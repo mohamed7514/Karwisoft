@@ -6,7 +6,7 @@ if('IntersectionObserver' in window){
   reveals.forEach(element=>observer.observe(element));
   const steps=[...document.querySelectorAll('[data-step]')];
   const railLinks=[...document.querySelectorAll('.journey-rail a')];
-  const stepObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const step=Number(entry.target.dataset.step);railLinks.forEach((link,i)=>{link.classList.toggle('active',i===step-1);if(i===step-1)link.setAttribute('aria-current','step');else link.removeAttribute('aria-current')});document.querySelector('.rail-line i').style.height=`${step*25}%`})},{rootMargin:'-25% 0px -45% 0px',threshold:0});
+  const stepObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const step=Number(entry.target.dataset.step);railLinks.forEach((link,i)=>{link.classList.toggle('active',i===step-1);if(i===step-1)link.setAttribute('aria-current','step');else link.removeAttribute('aria-current')});document.querySelector('.rail-line i').style.height=`${step/steps.length*100}%`})},{rootMargin:'-25% 0px -45% 0px',threshold:0});
   steps.forEach(step=>stepObserver.observe(step));
 }else{reveals.forEach(element=>element.classList.add('visible'))}
 const backTop=document.querySelector('.back-top');
