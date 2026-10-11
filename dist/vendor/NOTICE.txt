@@ -1,0 +1,1 @@
+GSAP and ScrollTrigger, version 3.15.0. Copyright notices and licensing URL are retained in the original vendor files. See https://gsap.com/standard-license/.

@@ -11,7 +11,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Manrope:wght@400;500;600;650;700;750;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="presentation.css">
+  <link rel="preload" as="image" href="assets/search-1536.webp" imagesrcset="assets/search-800.webp 800w, assets/search-1536.webp 1536w" imagesizes="100vw">
+  <script src="vendor/gsap.min.js" defer></script>
+  <script src="vendor/ScrollTrigger.min.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="presentation.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Aller au contenu</a>
@@ -21,27 +26,36 @@
   </header>
 
   <main id="main">
-    <section class="hero wrap" id="accueil" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="small-dot"></span> Votre futur patient, sur Google.</p>
-        <h1 id="hero-title" class="hook-title">Il cherche un dentiste.<br><span class="muted">Il vous découvre.</span><br><span class="serif">Pourquoi vous ?</span></h1>
-        <p class="hero-description">Entrons dans la tête de votre prochain patient.<br>De sa recherche Google à son premier contact.</p>
-        <a class="button dark" href="#approche">Suivre son parcours <span aria-hidden="true">↓</span></a>
-        <p class="micro hero-footnote">Site premium <span>+</span> Google Ads <span>+</span> Suivi des contacts</p>
+    <section class="story" id="accueil" aria-labelledby="hero-title">
+      <h1 id="hero-title" class="sr-only">Il cherche un dentiste. Il vous découvre. Pourquoi vous ?</h1>
+      <div class="story-stage">
+        <article class="story-scene story-search" data-story-scene="0" aria-labelledby="search-scene-title">
+          <picture class="story-photo"><source srcset="assets/search-800.webp 800w, assets/search-1536.webp 1536w" sizes="100vw"><img src="assets/search-1536.webp" width="1536" height="1024" fetchpriority="high" alt="Une femme consulte son téléphone chez elle, au début de sa recherche d’un dentiste."></picture>
+          <div class="story-shade" aria-hidden="true"></div>
+          <div class="story-caption wrap"><p class="eyebrow">01 / Tout commence par un besoin</p><h2 id="search-scene-title">Il cherche<br>un dentiste.</h2><p>Une question. Son téléphone. Une recherche.</p></div>
+          <div class="story-search-query"><span class="search-icon" aria-hidden="true"></span><span>Implants dentaires près de moi<span class="typing-caret" aria-hidden="true"></span></span><span aria-hidden="true">↵</span></div>
+          <span class="scene-credit">Scène illustrative · Image générée par IA</span>
+        </article>
+        <article class="story-scene story-discover" data-story-scene="1" aria-labelledby="discover-scene-title">
+          <picture class="story-photo"><source srcset="assets/clinic-800.webp 800w, assets/clinic-1536.webp 1536w" sizes="100vw"><img src="assets/clinic-1536.webp" width="1536" height="1024" alt="Un intérieur de clinique dentaire fictive, lumineux, en pierre naturelle et bois clair."></picture>
+          <div class="story-shade" aria-hidden="true"></div>
+          <div class="story-caption wrap"><p class="eyebrow">02 / Le clic ouvre une porte</p><h2 id="discover-scene-title">Il vous<br><em>découvre.</em></h2><p>Votre univers. Votre approche. Sa première impression.</p></div>
+          <div class="browser-mock story-browser" aria-label="Maquette illustrative du site de votre clinique">
+            <div class="browser-bar"><div class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></div><span>votre-clinique.ca</span><span aria-hidden="true">↗</span></div>
+            <div class="clinic-nav"><strong>votre clinique.</strong><span>Des soins. De l’attention.</span><span aria-hidden="true">☰</span></div>
+            <div class="clinic-hero"><img src="assets/patient-800.webp" width="800" height="533" alt="Portrait illustratif d’une femme souriante."><div class="clinic-photo-shade" aria-hidden="true"></div><div class="clinic-copy"><span>IMPLANTS DENTAIRES</span><h3>Retrouvez l’envie<br>de sourire.</h3><span class="clinic-pill">Découvrir mes options ↗</span></div></div>
+            <div class="clinic-bottom"><span>01 <b>Écouter.</b></span><span>02 <b>Rassurer.</b></span><span>03 <b>Accompagner.</b></span></div>
+          </div>
+          <span class="scene-credit">Clinique fictive · Maquette illustrative</span>
+        </article>
+        <article class="story-scene story-choice" data-story-scene="2" aria-labelledby="choice-scene-title">
+          <picture class="story-photo"><source srcset="assets/consultation-800.webp 800w, assets/consultation-1536.webp 1536w" sizes="100vw"><img src="assets/consultation-1536.webp" width="1536" height="1024" alt="Une dentiste écoute une patiente lors d’une consultation, dans un cadre calme et chaleureux."></picture>
+          <div class="story-shade" aria-hidden="true"></div>
+          <div class="story-caption wrap"><p class="eyebrow">03 / La question qui change la suite</p><h2 id="choice-scene-title">Pourquoi<br><em>vous ?</em></h2><p>Un message qui le comprend. Un parcours qui le guide.</p><a class="story-next" href="#approche">Voyons comment <span aria-hidden="true">↗</span></a></div>
+          <span class="scene-credit">Scène illustrative · Image générée par IA</span>
+        </article>
+        <div class="story-toolbar wrap"><span class="story-scroll">Faites défiler pour suivre le patient <span aria-hidden="true">↓</span></span><div class="story-controls" role="group" aria-label="Scènes de l’introduction"><button type="button" data-story-go="0" aria-label="Scène 1 : il cherche" aria-pressed="true"><span>01</span><i aria-hidden="true"></i></button><button type="button" data-story-go="1" aria-label="Scène 2 : il vous découvre" aria-pressed="false"><span>02</span><i aria-hidden="true"></i></button><button type="button" data-story-go="2" aria-label="Scène 3 : pourquoi vous" aria-pressed="false"><span>03</span><i aria-hidden="true"></i></button></div><a href="#approche">Le parcours <span aria-hidden="true">↗</span></a></div>
       </div>
-      <div class="hero-art" aria-label="Illustration du parcours, de la recherche au premier contact">
-        <div class="art-grid" aria-hidden="true"></div>
-        <div class="search-float"><span class="search-icon" aria-hidden="true"></span><span>Implants dentaires près de moi</span><span aria-hidden="true">↵</span></div>
-        <div class="browser-mock">
-          <div class="browser-bar"><div class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></div><span>Votre clinique · Votre identité</span><span aria-hidden="true">↗</span></div>
-          <div class="clinic-nav"><strong>votre clinique.</strong><span>Des soins. De l’attention.</span><span aria-hidden="true">☰</span></div>
-          <div class="clinic-hero"><div class="arch" aria-hidden="true"><div class="arch-inner"></div></div><div class="clinic-copy"><span>IMPLANTS DENTAIRES</span><h2>Retrouvez l’envie<br>de sourire.</h2><span class="clinic-pill">Découvrir mes options ↗</span></div><span class="image-label">Maquette illustrative</span></div>
-          <div class="clinic-bottom"><span>01 <b>Écouter.</b></span><span>02 <b>Rassurer.</b></span><span>03 <b>Accompagner.</b></span></div>
-        </div>
-        <div class="contact-float"><span class="contact-icon" aria-hidden="true">↗</span><div><strong>Un premier contact.</strong><span>Le début d’une relation.</span></div><span class="pulse" aria-hidden="true"></span></div>
-        <span class="art-caption">DU PREMIER CLIC AU PREMIER CONTACT</span>
-      </div>
-      <div class="hero-baseline"><span>Un patient. Cinq étapes. Chaque détail compte.</span><span>Québec · Canada</span><a href="#approche">Faites défiler <span aria-hidden="true">↓</span></a></div>
     </section>
 
     <section class="approach wrap reveal" id="approche" aria-labelledby="approach-title">
@@ -59,12 +73,12 @@
 
       <section class="chapter wrap" id="ressentir" aria-labelledby="feeling-title" data-step="2">
         <div class="chapter-copy reveal"><p class="eyebrow">02 / Derrière sa recherche, une émotion</p><p class="patient-thought">« Je n’ose plus sourire. Mais le traitement me fait peur. »</p><h2 id="feeling-title">Il cherche un soin.<br><span class="serif">Il veut être compris.</span></h2><p>Le titre de l’annonce parle de ce qu’il souhaite retrouver. Le message l’aide à envisager la suite : découvrir ses options, à son rythme.</p><div class="chapter-gain"><span aria-hidden="true">↗</span> Pour votre clinique : une raison de cliquer, au-delà du nom d’un soin.</div></div>
-        <div class="visual emotion-visual reveal"><div class="visual-label"><span>LE MESSAGE DE L’ANNONCE</span><span>02 — 05</span></div><div class="emotion-source"><span>CE QU’IL PEUT RESSENTIR</span><p>« J’aimerais sourire<br>sans me cacher. »</p></div><div class="search-window"><span class="ad-tag">Annonce · Exemple illustratif</span><p class="ad-url">votre-clinique.ca / implants</p><h3>Retrouvez l’envie de sourire</h3><p>Implants dentaires à Montréal. Découvrez vos options, à votre rythme.</p><div class="ad-links"><span>Découvrir mes options</span><span>Rencontrer l’équipe</span></div><span class="cursor-arrow" aria-hidden="true">↖</span></div><div class="visual-bottom"><span>Son émotion</span><span>→</span><span>Un message qui lui répond</span></div></div>
+        <div class="visual emotion-visual reveal"><div class="visual-label"><span>LE MESSAGE DE L’ANNONCE</span><span>02 — 05</span></div><div class="emotion-source"><img src="assets/patient-800.webp" width="800" height="533" loading="lazy" alt="Portrait illustratif : le souhait de retrouver l’envie de sourire."><div><span>CE QU’IL PEUT RESSENTIR</span><p>« J’aimerais sourire<br>sans me cacher. »</p></div></div><div class="search-window"><span class="ad-tag">Annonce · Exemple illustratif</span><p class="ad-url">votre-clinique.ca / implants</p><h3>Retrouvez l’envie de sourire</h3><p>Implants dentaires à Montréal. Découvrez vos options, à votre rythme.</p><div class="ad-links"><span>Découvrir mes options</span><span>Rencontrer l’équipe</span></div><span class="cursor-arrow" aria-hidden="true">↖</span></div><div class="visual-bottom"><span>Son émotion</span><span>→</span><span>Un message qui lui répond</span></div></div>
       </section>
 
       <section class="chapter wrap" id="convaincre" aria-labelledby="convince-title" data-step="3">
         <div class="chapter-copy reveal"><p class="eyebrow">03 / Il vient de cliquer</p><p class="patient-thought">« Est-ce que je vais me sentir en confiance ici ? »</p><h2 id="convince-title">La confiance commence<br><span class="serif">avant la rencontre.</span></h2><p>La page reprend le message de l’annonce. Design premium, présentation de votre équipe, explications claires : chaque détail l’aide à se repérer et à découvrir votre clinique.</p><div class="chapter-gain"><span aria-hidden="true">↗</span> Pour votre clinique : donner une raison de rester et d’en savoir plus.</div></div>
-        <div class="visual trust-visual reveal"><div class="visual-label"><span>SA PREMIÈRE IMPRESSION</span><span>03 — 05</span></div><div class="trust-layout"><div class="portrait-placeholder"><div class="portrait-arch" aria-hidden="true"></div><span>Une équipe.<br>Un lieu.<br>De la confiance.</span></div><div class="trust-notes"><div><span>01 / IL SE RECONNAÎT</span><h3>Le même message, du clic à la page.</h3></div><div><span>02 / IL VOUS DÉCOUVRE</span><h3>Votre équipe et votre approche.</h3></div><div><span>03 / IL COMPREND</span><h3>Ses options, expliquées simplement.</h3></div></div></div><div class="visual-bottom"><span>Une continuité entre l’annonce et le site.</span></div></div>
+        <div class="visual trust-visual reveal"><div class="visual-label"><span>SA PREMIÈRE IMPRESSION</span><span>03 — 05</span></div><div class="trust-layout"><div class="portrait-placeholder"><img src="assets/clinic-800.webp" width="800" height="533" loading="lazy" alt="Concept illustratif d’une clinique accueillante, avec espace de soins en arrière-plan."><span>Une équipe.<br>Un lieu.<br>De la confiance.</span></div><div class="trust-notes"><div><span>01 / IL SE RECONNAÎT</span><h3>Le même message, du clic à la page.</h3></div><div><span>02 / IL VOUS DÉCOUVRE</span><h3>Votre équipe et votre approche.</h3></div><div><span>03 / IL COMPREND</span><h3>Ses options, expliquées simplement.</h3></div></div></div><div class="visual-bottom"><span>Une continuité entre l’annonce et le site.</span></div></div>
       </section>
 
       <section class="chapter wrap" id="convertir" aria-labelledby="convert-title" data-step="4">
@@ -90,7 +104,7 @@
 
     <section class="next-section wrap reveal" id="suite" aria-labelledby="next-title"><p class="eyebrow">Pourquoi vous ? Construisons la réponse.</p><div class="next-row"><h2 id="next-title">Votre prochain patient.<br><span class="serif">Un parcours pensé pour lui.</span></h2><div class="next-detail"><p id="selected-model" aria-live="polite">Site premium + acquisition Google Ads.</p><p class="micro">Votre clinique, vos soins, votre zone. Et un message qui parle à vos patients.</p><a class="button dark" href="#offre">Comparer les deux modèles <span aria-hidden="true">↑</span></a><span class="contact-placeholder">Espace réservé à la prise de contact</span></div></div></section>
   </main>
-  <footer class="wrap footer"><a class="brand" href="#accueil">karwisoft<span>marketing<span class="brand-dot">®</span></span></a><p>Du premier clic au premier contact.</p><span>Gabarit d’offre · 2026</span></footer>
+  <footer class="wrap footer"><a class="brand" href="#accueil">karwisoft<span>marketing<span class="brand-dot">®</span></span></a><p>Du premier clic au premier contact.</p><span>Photos illustratives générées par IA · 2026</span></footer>
   <a class="back-top" href="#accueil" aria-label="Retour en haut">↑</a>
 </body>
 </html>
