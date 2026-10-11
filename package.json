@@ -1,0 +1,6 @@
+{
+  "name": "karwisoft-offre-dentaire",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {"start": "node scripts/preview.mjs", "check": "node --check dist/app.js"}
+}
