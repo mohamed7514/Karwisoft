@@ -10,9 +10,9 @@ Landing page destinée aux cabinets dentaires. Projet séparé de `../site-patie
 
 ## Parcours
 
-1. Hook visuel en trois scènes plein écran : une patiente cherche sur son téléphone → le site de la clinique apparaît → la relation avec l’équipe. « Il cherche un dentiste. Il vous découvre. Pourquoi vous ? » devient trois légendes, une par image. GSAP et ScrollTrigger pilotent la séquence au scroll, avec navigation entre les scènes.
+1. Hook visuel en trois scènes plein écran : « Il cherche. Il compare. Pourquoi vous ? » → « Il compare ses options. » → « Pourquoi vous choisir ? ». La question complète apparaît dès la première scène. GSAP et ScrollTrigger pilotent la séquence au scroll, avec navigation entre les scènes.
 2. Approche : partir de ce que le patient cherche et de ce qu’il ressent.
-3. Douze slides : visibilité Google Ads, émotion, première impression avec le vrai hero Épure animé, orientation urgence/consultation, photos guidées facultatives, SmilePreview illustratif, mini-quiz et préférence de rendez-vous, réception, rappels SMS, avis après visite, workflow complet, mesure des contacts. Chaque étape explique le bénéfice pour la clinique.
+3. Treize slides répondent au hook « Un patient cherche un dentiste. Il compare plusieurs cliniques. Pourquoi choisirait-il la vôtre ? » : visibilité Google Ads, message, première impression avec le vrai hero Épure animé, confiance dans l’équipe, orientation urgence/consultation, photos facultatives, SmilePreview illustratif, mini-quiz et préférence de rendez-vous, réception, rappels SMS, avis après visite, workflow complet, ROI. Chaque étape pose la question suivante et explique le bénéfice pour la clinique. La dernière relie le coût complet du dispositif à la marge attribuable aux campagnes, sans résultat inventé.
 4. Deux modèles : par lead (appel de 60 secondes minimum ou formulaire), ou gestion mensuelle.
 5. Bonus : configuration + 30 jours de gestion Google Ads offerts à l’achat du site, budget média payé par le cabinet.
 6. Résumé du modèle choisi et espace réservé à la prise de contact.
