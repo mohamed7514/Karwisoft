@@ -89,7 +89,6 @@
     document.querySelectorAll('.emotion-source > img, .portrait-placeholder > img').forEach(image => {
       gsap.fromTo(image, {scale: 1.12}, {scale: 1, ease: 'none', scrollTrigger: {trigger: image.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.8}});
     });
-    gsap.fromTo('.trust-notes > div', {x: 15, opacity: 0}, {x: 0, opacity: 1, stagger: 0.18, duration: 0.8, scrollTrigger: {trigger: '.trust-layout', start: 'top 85%', once: true}});
     gsap.fromTo('.bonus-symbol', {rotation: -50}, {rotation: 20, scrollTrigger: {trigger: '.launch-bonus', start: 'top bottom', end: 'bottom center', scrub: 0.8}});
 
     return () => {

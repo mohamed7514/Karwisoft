@@ -1,42 +1,16 @@
-document.documentElement.classList.add('js');
-const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-const reveals=document.querySelectorAll('.reveal');
-if('IntersectionObserver' in window){
-  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.08});
-  reveals.forEach(element=>observer.observe(element));
-  const steps=[...document.querySelectorAll('[data-step]')];
-  const railLinks=[...document.querySelectorAll('.journey-rail a')];
-  const stepObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const step=Number(entry.target.dataset.step);railLinks.forEach((link,i)=>{link.classList.toggle('active',i===step-1);if(i===step-1)link.setAttribute('aria-current','step');else link.removeAttribute('aria-current')});document.querySelector('.rail-line i').style.height=`${step/steps.length*100}%`})},{rootMargin:'-25% 0px -45% 0px',threshold:0});
-  steps.forEach(step=>stepObserver.observe(step));
-}else{reveals.forEach(element=>element.classList.add('visible'))}
-const backTop=document.querySelector('.back-top');
-let queued=false;
-function scrollUpdate(){backTop.classList.toggle('visible',window.scrollY>650);queued=false}
-window.addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(scrollUpdate)}},{passive:true});scrollUpdate();
-
-const flow=document.querySelector('#flow-content');
-const initialFlow=flow.innerHTML;
-function setProgress(step){document.querySelector('#flow-count').textContent=`0${step} / 03`;document.querySelectorAll('.flow-progress i').forEach((item,i)=>item.classList.toggle('done',i<step))}
-function focusFlow(){const heading=flow.querySelector('h3');heading.tabIndex=-1;heading.focus({preventScroll:true})}
-function resetFlow(focus=false){flow.innerHTML=initialFlow;setProgress(1);if(focus)focusFlow()}
-flow.addEventListener('click',event=>{
-  const choice=event.target.closest('[data-need]');
-  if(choice){
-    if(choice.dataset.need==='Une urgence'){
-      setProgress(2);flow.innerHTML='<h3>Un besoin urgent ?</h3><p>Le parcours donne priorité au contact direct avec la clinique.</p><p class="flow-result">Un accès téléphone dédié, à connecter au numéro de votre cabinet.</p><p>Simulation du parcours — aucun appel déclenché.</p>';
-    }else{
-      setProgress(2);flow.innerHTML='<h3>Préparons votre visite.</h3><p>Photos facultatives et quelques questions pour préciser votre besoin.</p><div class="flow-choices"><button type="button" data-flow-next><span>Continuer la simulation</span><span aria-hidden="true">↗</span></button></div>';
-    }
-    focusFlow();return;
-  }
-  if(event.target.closest('[data-flow-next]')){setProgress(3);flow.innerHTML='<h3>Vous avez fait le premier pas.</h3><p class="flow-result">Votre demande rejoint la réception pour validation et confirmation du rendez-vous.</p><p>Simulation — aucune demande envoyée.</p>';focusFlow()}
-});
-document.querySelector('#flow-reset').addEventListener('click',()=>resetFlow(true));
-const labels={lead:'Votre choix : site premium + gestion Google Ads par lead.',mensuel:'Votre choix : site premium + gestion Google Ads au mois.'};
-document.querySelectorAll('.model-button').forEach(button=>button.addEventListener('click',()=>{
-  const model=button.dataset.model;
-  document.querySelectorAll('.offer-card').forEach(card=>{const selected=card.dataset.model===model;card.classList.toggle('selected',selected);const action=card.querySelector('button');action.setAttribute('aria-pressed',String(selected));action.innerHTML=selected?'Modèle sélectionné <span aria-hidden="true">✓</span>':'Choisir ce modèle <span aria-hidden="true">↗</span>'});
-  document.querySelector('#selected-model').textContent=labels[model];
-  const next=document.querySelector('#suite');next.scrollIntoView({behavior:reducedMotion.matches?'instant':'smooth',block:'start'});
-  const title=document.querySelector('#next-title');title.tabIndex=-1;title.focus({preventScroll:true});
-}));
+/* Browser-only presentation: no data collected or transmitted. */
+(() => {
+const messages={design:'Une image immersive et une typographie soignée donnent une première impression cohérente avec une clinique attentive.',message:'Le plaisir de sourire, à nouveau. Le titre parle du souhait du patient avant d’expliquer les soins.',confiance:'Une animation illustrative, une limite clairement indiquée et une suite simple : le patient comprend ce qu’il regarde.'};
+document.querySelectorAll('[data-hotspot]').forEach(b=>b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')==='true';document.querySelectorAll('[data-hotspot]').forEach(x=>x.setAttribute('aria-expanded','false'));b.setAttribute('aria-expanded',String(!open));document.querySelector('#hotspot-detail').textContent=open?'Cliquez sur un point pour découvrir l’intention derrière le détail.':messages[b.dataset.hotspot]}));
+document.querySelectorAll('[data-branch]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-branch]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.querySelector('#branch-result').textContent=b.dataset.branch==='urgence'?'Urgence → téléphone de la clinique immédiatement accessible. Les photos et le quiz ne bloquent pas le contact.':'Consultation → photos facultatives, mini-quiz, puis préférence de rendez-vous. Suivez les prochaines diapositives.'}));
+const range=document.querySelector('#smile-range');range.addEventListener('input',()=>document.querySelector('.smile-compare').style.setProperty('--split',range.value+'%'));
+const questions=[['Qu’aimeriez-vous explorer ?',['Implants dentaires','Alignement','Esthétique du sourire']],['Quand souhaitez-vous en parler ?',['Dès que possible','Dans les prochains mois','Je me renseigne']],['Un budget envisagé ?',['À définir avec la clinique','Une fourchette à préciser','Je préfère en parler']],['Quel moment vous conviendrait ?',['Un matin cette semaine','Un après-midi prochainement','Être rappelé pour choisir']]];
+let step=0,answers=[];const content=document.querySelector('#quiz-content');
+function render(focus=false){document.querySelector('#quiz-step').textContent=step<4?String(step+1).padStart(2,'0')+' / 04':'DEMANDE PRÉPARÉE';content.replaceChildren();const h=document.createElement('h3');h.tabIndex=-1;h.textContent=step<4?questions[step][0]:'Votre demande est préparée.';content.append(h);if(step<4){const options=document.createElement('div');options.className='quiz-options';questions[step][1].forEach(a=>{const b=document.createElement('button');b.type='button';b.textContent=a+' ↗';b.addEventListener('click',()=>{answers.push(a);step++;render(true)});options.append(b)});content.append(options)}else{const p=document.createElement('p');p.className='quiz-complete';p.textContent=answers.join(' · ')+'. La réception vérifie la disponibilité et confirme ensuite. Rien n’a été transmis dans cette simulation.';content.append(p)}if(focus)h.focus({preventScroll:true})}
+document.querySelector('#quiz-reset').addEventListener('click',()=>{step=0;answers=[];render(true)});render();
+document.querySelectorAll('.model-button').forEach(b=>{b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{document.querySelectorAll('.offer-card').forEach(c=>c.classList.toggle('selected',c.dataset.model===b.dataset.model));document.querySelectorAll('.model-button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.querySelector('#selected-model').textContent=b.dataset.model==='lead'?'Votre choix : site premium + gestion Google Ads par lead.':'Votre choix : site premium + gestion Google Ads au mois.';document.querySelector('#suite').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})})});
+const slides=[...document.querySelectorAll('[data-deck]')],nav=document.querySelector('.deck-nav');let active=0;
+function update(){const line=innerHeight*.45,index=slides.findIndex(s=>{const r=s.getBoundingClientRect();return r.top<=line&&r.bottom>line});if(index>=0)active=index;const visible=slides[0].getBoundingClientRect().top<innerHeight*.75&&document.querySelector('#offre').getBoundingClientRect().top>innerHeight*.25;nav.classList.toggle('is-visible',visible);nav.inert=!visible;document.querySelector('#deck-position').textContent=String(active+1).padStart(2,'0')+' / 12';document.querySelector('#deck-prev').disabled=active===0;document.querySelector('#deck-next').disabled=active===slides.length-1}
+function go(d){slides[Math.max(0,Math.min(slides.length-1,active+d))].scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})}
+document.querySelector('#deck-prev').addEventListener('click',()=>go(-1));document.querySelector('#deck-next').addEventListener('click',()=>go(1));let scheduled=false;addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(()=>{update();scheduled=false})}},{passive:true});addEventListener('resize',update);update();
+})();

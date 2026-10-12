@@ -20,3 +20,36 @@ Use case: photorealistic-natural. Asset type: premium dental clinic website arch
 
 Use case: photorealistic-natural. Asset type: premium dental patient journey presentation. One single cinematic horizontal 3:2 editorial photograph of a fictional reassuring dental consultation in a warm modern clinic: woman dentist around 38 in ivory medical tunic, no mask because this is conversation not treatment, seated on the right listening attentively to a woman patient around 50 seen in soft three-quarter side profile on the left. They are at eye level, discussing care options at a small pale oak desk, natural hands resting on desk, empathetic candid interaction, no procedures, no tools in mouths, no smiles forced at camera. Soft daylight through curtains, travertine details, comfortable beige and ivory setting, skin texture and authentic faces, beautiful editorial photography, shallow depth of field. Palette ivory, beige, warm charcoal; no green, no bright blue. No readable text, logos, watermarks, graphics, or medical result claims.
 
+
+
+## Complete journey — built-in Imagegen
+
+### reaction
+Use case: photorealistic-natural. Asset: premium cinematic dentist sales presentation photo, landscape 1536x1024. Warm ivory, beige, charcoal, natural skin texture, editorial luxury, subtle film grain, beautiful natural light. No green, no logos, no text, no watermarks, no UI baked into image. Reference image is identity reference only: preserve this fictional woman's face, chestnut shoulder length hair, age45 and ivory linen shirt. New scene: at home looking at an open laptop, genuinely quietly impressed by a premium clinic website, soft pleased smile, expressive attentive eyes, no exaggerated grin. Woman occupies left half, laptop seen obliquely in foreground, warm architectural interior, right half soft unfocused space for website overlay.
+
+Saved: `assets/source/reaction.png`
+
+### capture
+Use case: photorealistic-natural. Asset: premium cinematic dentist sales presentation photo, landscape 1536x1024. Warm ivory, beige, charcoal, natural skin texture, editorial luxury, subtle film grain, beautiful natural light. No green, no logos, no text, no watermarks, no UI baked into image. Reference image is identity reference only: preserve this fictional woman's face, chestnut hair, age45, ivory linen shirt. New scene: woman taking a guided smile selfie with phone held at arm's length near a bright window at home, subtle natural smile, phone back toward camera, realistic fingers and normal anatomy. Subject in right half, left half calm warm wall for text. Three quarter view, candid high-end photograph.
+
+Saved: `assets/source/capture.png`
+
+### reception
+Use case: photorealistic-natural. Asset: premium cinematic dentist sales presentation photo, landscape 1536x1024. Warm ivory, beige, charcoal, natural skin texture, editorial luxury, subtle film grain, beautiful natural light. No green, no logos, no text, no watermarks, no UI baked into image. New fictional professional dental receptionist age35 at a refined travertine reception desk, oak cabinetry and softly lit ivory dental clinic. She looks attentive at a slim computer monitor while wearing a discreet headset. Woman on left-middle, right half softly unfocused reception background for notification overlay. Calm, helpful, real work moment, not posing.
+
+Saved: `assets/source/reception.png`
+
+### reminder
+Use case: photorealistic-natural. Asset: premium cinematic dentist sales presentation photo, landscape1536x1024. Warm ivory, beige, charcoal, natural skin texture, editorial luxury, subtle film grain, beautiful natural light. No green, no logos, no text, no watermarks, no UI baked into image. Reference image is identity reference only: same fictional woman age45 with chestnut hair and ivory linen shirt. New scene: sitting at a warm oak kitchen table, checking smartphone in her hand beside a closed paper diary and coffee. Relaxed organized expression, 3/4 view. Woman right half of wide composition, negative left half softly blurred warm interior. Phone screen away from camera.
+
+Saved: `assets/source/reminder.png`
+
+### review
+Use case: photorealistic-natural. Asset: premium cinematic dentist sales presentation photo, landscape1536x1024. Warm ivory, beige, charcoal, natural skin texture, editorial luxury, subtle film grain, beautiful natural light. No green, no logos, no text, no watermarks, no UI baked into image. Reference image is identity reference only: same fictional woman age45 chestnut hair and ivory linen shirt. New scene: outside a sophisticated urban café in soft late afternoon sunlight, looking down at her phone with a calm content smile after a visit. Woman right half, left half softly blurred cream stone facade. Realistic natural hands, no exaggerated smile, no review stars or graphics.
+
+Saved: `assets/source/review.png`
+
+### dentist
+Use case: photorealistic-natural. Asset: premium cinematic dentist sales presentation photo, landscape1536x1024. Warm ivory, beige, charcoal, natural skin texture, editorial luxury, subtle film grain, beautiful natural light. No green, no logos, no text, no watermarks, no UI baked into image. Portrait of a fictional female dentist age40 with dark brown hair, wearing charcoal clinical scrubs, in an exceptionally elegant ivory and oak dental clinic. Warm confident natural expression looking toward camera, arms relaxed, no tools in hands. Subject on right third, negative left area softly blurred architectural clinic background. Professional credibility, approachability, subtle cinematic lighting.
+
+Saved: `assets/source/dentist.png`
