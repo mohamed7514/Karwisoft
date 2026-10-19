@@ -1,5 +1,6 @@
 /* Local GSAP: scroll reveals the images that tell the three-act introduction. */
 (() => {
+if(new URLSearchParams(location.search).get('mode')==='presentation')return;
   if (!window.gsap || !window.ScrollTrigger) return;
   const {gsap, ScrollTrigger} = window;
   gsap.registerPlugin(ScrollTrigger);

@@ -1,30 +1,39 @@
-# Karwisoft Marketing — gabarit de l’offre
+# Karwisoft — landing page et présentation
 
-Landing page destinée aux cabinets dentaires. Projet séparé de `../site-patient`.
+Une page pour présenter l’offre aux cliniques dentaires, avec deux modes qui partagent les mêmes contenus. Le site patient Épure reste dans `../site-patient`.
 
-## Lancer
+## Utilisation
 
-`npm start` puis http://127.0.0.1:3100. Aucun paquet à installer.
+- `npm start` sert le site sur http://127.0.0.1:3100 sans dépendance à installer.
+- L’adresse principale ouvre la landing : introduction animée, parcours interactif, deux formules, bonus de lancement, FAQ et contact.
+- Le lien **Présenter** ouvre `?mode=presentation#intro-1` : 19 diapositives, une seule visible à la fois, précédent/suivant, sommaire, plein écran si disponible et retour au site à la section courante. Les diapositives longues restent défilables.
+- Les flèches gauche/droite, Page précédente/suivante et Début/Fin naviguent dans la présentation. Les champs, boutons et le comparateur gardent leur fonctionnement au clavier.
+- Une ancre ouvre directement une étape, par exemple `?mode=presentation#demande` ou `?mode=presentation#offre`.
+- En présentation, la transformation illustrative se rejoue à la demande. En ligne, les animations GSAP au défilement sont conservées.
 
-`npm run check` vérifie la syntaxe JavaScript.
+Le bouton final ouvre le logiciel de courriel vers **Contact@Karwisoft.com**. Le choix de formule actualise le résumé et l’objet du courriel. Aucun formulaire n’est envoyé par le site et aucun service de messagerie n’est connecté. La FAQ précise les modèles, le budget publicitaire et le relais de la réception. Aucun prix, témoignage ou résultat chiffré n’est inventé.
 
-## Parcours
+## Fichiers
 
-1. Hook visuel en trois scènes plein écran : « Il cherche. Il compare. Pourquoi vous ? » → « Il compare ses options. » → « Pourquoi vous choisir ? ». La question complète apparaît dès la première scène. GSAP et ScrollTrigger pilotent la séquence au scroll, avec navigation entre les scènes.
-2. Approche : partir de ce que le patient cherche et de ce qu’il ressent.
-3. Treize slides répondent au hook « Un patient cherche un dentiste. Il compare plusieurs cliniques. Pourquoi choisirait-il la vôtre ? » : visibilité Google Ads, message, première impression avec le vrai hero Épure animé, confiance dans l’équipe, orientation urgence/consultation, photos facultatives, SmilePreview illustratif, mini-quiz et préférence de rendez-vous, réception, rappels SMS, avis après visite, workflow complet, ROI. Chaque étape pose la question suivante et explique le bénéfice pour la clinique. La dernière relie le coût complet du dispositif à la marge attribuable aux campagnes, sans résultat inventé.
-4. Deux modèles : par lead (appel de 60 secondes minimum ou formulaire), ou gestion mensuelle.
-5. Bonus : configuration + 30 jours de gestion Google Ads offerts à l’achat du site, budget média payé par le cabinet.
-6. Résumé du modèle choisi et espace réservé à la prise de contact.
+- `dist/index.html` : contenu commun, FAQ, contact et commandes de présentation.
+- `dist/styles.css`, `dist/presentation.css`, `dist/journey.css` : identité et animations existantes.
+- `dist/modes.css`, `dist/modes.js` : présentation sur tablette, sommaire, plein écran et mises en page adaptées.
+- `dist/app.js` : démonstrations, choix de formule et navigation du parcours en ligne.
+- `dist/presentation.js`, `dist/journey.js` : animations de la landing, désactivées en présentation pour éviter de bloquer la navigation par diapositives.
+- `dist/assets/` et `dist/vendor/` : visuels WebP et GSAP local.
 
-## Périmètre de cette version
+Sans JavaScript, la lecture en ligne et le lien de courriel restent disponibles. Le mode présentation nécessite JavaScript. La préférence de réduction des animations est respectée.
 
-Présentation responsive avec dix photographies générées par IA, séquence GSAP en trois actes, slides photographiques, navigation précédente/suivante et animations au scroll. Le vrai hero Épure est intégré localement avec ses images et ses masques de transformation ; il reste à l’écran pendant la transformation sur ordinateur. Points explicatifs cliquables, slider SmilePreview, quiz interactif et sélection de formule. Aucun prix ni résultat chiffré inventé. Aucune collecte de données, aucun appel, aucune demande envoyée et aucune intégration au logiciel dentaire. Calendrier, notifications, fiche sécurisée, Twilio et avis sont présentés comme le fonctionnement cible à configurer pour chaque clinique. Le module de prise de contact est explicitement réservé.
+## Vérification
 
-Sans JavaScript ou avec la préférence « réduire les animations », les trois scènes restent visibles dans l’ordre, sans immobilisation du scroll. Les boutons du hero fonctionnent au clavier et les scènes masquées sont inertes. Les images sont illustratives : personnes et clinique fictives. Originaux, méthode et prompts : `assets/PROMPTS.md`. Versions WebP de production, 800/1536 pixels : `dist/assets/`. GSAP 3.15.0 est servi localement depuis `dist/vendor/`, avec ses mentions de licence.
+`npm run check` vérifie la syntaxe des quatre scripts du site.
 
-La rédaction ne promet aucune position Google et ne présente aucun pourcentage non vérifié d’acquisition. La visibilité publicitaire précède le choix du message et l’expérience du site. Les émotions et l’annonce sont des exemples illustratifs, sans promesse de résultat médical ni de conversion.
+Depuis le dossier parent, avec le serveur lancé : `node tools/dual-check.mjs`. Ce contrôle utilise Chrome installé sur Windows, aux formats 1440×900, 1024×768, 768×1024, 390×844 et 320×568. Il vérifie les 19 diapositives, les ancres, le sommaire, le quiz, le comparateur, le clavier, les choix de formule, l’adresse de contact, les animations et les erreurs JavaScript. Captures dans `../preview/next/dual-*.png`.
 
-Fichiers à modifier : `dist/index.html` (contenu), `dist/styles.css` (base), `dist/presentation.css` (intro), `dist/journey.css` (slides), `dist/app.js` (interactions), `dist/presentation.js` et `dist/journey.js` (GSAP). Les six nouvelles photos et leurs prompts sont listés dans `assets/journey-images.json`. Les images du sourire viennent du site patient existant, qui n’a pas été modifié.
+## Démonstration et offre
 
-Vérification navigateur : quatre largeurs (1440, 768, 390, 320), absence de débordement, images, ancres, urgence, points explicatifs, slider, quiz, formules, transformation du hero et retour arrière, réduction des animations et contenu sans JavaScript. Aucun backend réel n’est testé ni revendiqué.
+Les personnes, cliniques et images sont fictives. Origine des images et prompts : `assets/PROMPTS.md`, `assets/journey-images.json`. Les visuels du sourire sont réutilisés depuis le projet patient. GSAP est servi localement avec ses mentions de licence.
+
+La démonstration ne transmet aucune photo ni donnée, ne réserve aucun rendez-vous et n’envoie aucun SMS. L’aperçu de sourire est illustratif. Calendrier, notifications, fiche de réception et avis décrivent un fonctionnement à configurer pour chaque clinique ; aucune connexion au logiciel dentaire n’est active.
+
+Deux modèles de gestion Google Ads sont présentés : par lead ou au mois, sur devis. Le budget publicitaire reste payé par la clinique. Le bonus à l’achat du site comprend la configuration et 30 jours de gestion à compter du lancement des campagnes ; les conditions suivantes sont définies au devis.

@@ -1,0 +1,9 @@
+import {spawn} from 'node:child_process';
+const env = {...process.env};
+const pathKeys = Object.keys(env).filter(key => key.toLowerCase() === 'path');
+const originalPath = env[pathKeys[0]] || '';
+for (const key of pathKeys) delete env[key];
+env.Path = 'C:/Program Files/Git/cmd;C:/Program Files/Git/bin;' + originalPath;
+const child = spawn(process.execPath, ['C:/Users/MSI/.codex/plugins/cache/openai-curated-remote/sites/1.0.0/scripts/site-workflow.mjs', ...process.argv.slice(2)], {env, stdio:'inherit', windowsHide:true});
+child.on('error', error => {console.error(error.message); process.exitCode = 1});
+child.on('exit', code => {process.exitCode = code ?? 1});

@@ -1,5 +1,6 @@
 /* Faithful local Épure hero + scroll-driven slide photography. */
 (() => {
+if(new URLSearchParams(location.search).get('mode')==='presentation')return;
 if(!window.gsap||!window.ScrollTrigger)return;
 const {gsap,ScrollTrigger}=window;gsap.registerPlugin(ScrollTrigger);const media=gsap.matchMedia();
 media.add({motion:'(prefers-reduced-motion: no-preference)',desktop:'(min-width: 1101px)'},context=>{
