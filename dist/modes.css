@@ -1,4 +1,21 @@
 [hidden]{display:none!important}
+.offer-common{margin-top:35px;padding:26px 0;border-block:1px solid #464740}
+.offer-common h3{font-size:21px;font-weight:400;letter-spacing:-.5px;margin:0 0 24px}
+.offer-common ul{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px 32px;margin:0;padding:0}
+.offer-common strong{font-size:12px;font-weight:500;display:block;margin-bottom:7px;color:#e5dccd}
+.offer-common li>span{display:block;font-size:11px;line-height:1.75;color:#aaa89e}
+.offer-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.offer-grid .offer-card{display:flex;flex-direction:column;min-width:0;padding:27px}
+.offer-grid .offer-card h3{font-size:clamp(29px,2.8vw,43px);letter-spacing:-1.5px}
+.offer-grid .offer-card-top{font-size:9px;gap:12px;line-height:1.7}
+.offer-grid .offer-card>p{max-width:none;flex:1}
+.offer-platform{display:block;font-size:10px;color:#c5aa85;margin:12px 0 25px}
+.offer-grid .offer-price{gap:12px;line-height:1.7;margin-bottom:15px;font-size:10px}
+.offer-grid .offer-price>span{text-align:right;font-size:12px}
+.offer-grid .model-button{margin-top:10px;padding-inline:17px;gap:12px}
+@media(min-width:761px) and (max-width:1100px){.offer-grid{gap:12px}.offer-grid .offer-card{padding:20px}.offer-grid .offer-card h3{font-size:29px}.offer-grid .offer-card-top{font-size:8px}.offer-grid .offer-price{display:block}.offer-grid .offer-price>span{display:block;text-align:left}.offer-grid .model-button{font-size:10px;padding-inline:12px}}
+@media(max-width:760px){.offer-common{padding-block:23px;margin-top:26px}.offer-common ul{grid-template-columns:1fr 1fr;gap:20px}.offer-common strong{font-size:11px}.offer-common li>span{font-size:10px}.offer-common h3{font-size:20px}.offer-grid{grid-template-columns:1fr}.offer-grid .offer-card{padding:25px}.offer-grid .offer-card h3{font-size:36px}.offer-grid .offer-card>p{max-width:350px}}
+@media(max-width:360px){.offer-common ul{grid-template-columns:1fr}.offer-grid .offer-card{padding:22px}}
 .header nav>a.services-link{display:inline-flex;align-items:center;min-height:44px}
 @media(max-width:380px){.header nav>.nav-offer{display:none}}
 .presentation-link{border-bottom:1px solid #a59a87;padding-block:8px}

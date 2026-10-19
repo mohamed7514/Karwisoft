@@ -6,7 +6,7 @@
   const scenes = [...document.querySelectorAll('[data-story-scene]')];
   scenes.forEach((scene, index) => {scene.id = 'intro-' + (index + 1)});
   const frames = [...scenes, document.querySelector('#approche'), ...document.querySelectorAll('[data-deck]'), document.querySelector('#offre'), document.querySelector('#suite')];
-  const labels = ['Il cherche. Pourquoi vous ?', 'Il compare ses options', 'Pourquoi vous choisir ?', 'Notre approche', 'Être visible', 'Parler à son besoin', 'La première impression', 'Inspirer confiance', 'Orienter le patient', 'Les photos guidées', 'L’aperçu du sourire', 'Préparer la demande', 'Le relais de la réception', 'Les rappels', 'L’après-visite', 'Le parcours complet', 'Mesurer', 'Les deux formules', 'Parlons de votre clinique'];
+  const labels = ['Il cherche. Pourquoi vous ?', 'Il compare ses options', 'Pourquoi vous choisir ?', 'Notre approche', 'Être visible', 'Parler à son besoin', 'La première impression', 'Inspirer confiance', 'Orienter le patient', 'Les photos guidées', 'L’aperçu du sourire', 'Préparer la demande', 'Le relais de la réception', 'Les rappels', 'L’après-visite', 'Le parcours complet', 'Mesurer', 'Les formules Google Ads', 'Parlons de votre clinique'];
   const top = document.querySelector('.present-top');
   const controls = document.querySelector('.present-controls');
   const previous = document.querySelector('#present-prev');
