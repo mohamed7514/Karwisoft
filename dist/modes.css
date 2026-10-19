@@ -1,4 +1,6 @@
 [hidden]{display:none!important}
+.header nav>a.services-link{display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:380px){.header nav>.nav-offer{display:none}}
 .presentation-link{border-bottom:1px solid #a59a87;padding-block:8px}
 .approach-offer{display:inline-block;margin:16px 0 0 24px;font-size:12px;border-bottom:1px solid #b5a895;padding-bottom:5px}
 .contact-email{display:block;margin-top:20px;font-size:14px;text-decoration:underline;text-underline-offset:5px;overflow-wrap:anywhere}

@@ -2,6 +2,8 @@
 
 Une page pour présenter l’offre aux cliniques dentaires, avec deux modes qui partagent les mêmes contenus. Le site patient Épure reste dans `../site-patient`.
 
+La page `/services/` présente les quatre expertises Karwisoft : SEO, SEO pour la recherche IA, Google Ads et création de sites web. Elle est reliée au menu de l’accueil, au mode présentation et au contact par courriel. Son contenu est dans `dist/services/index.html`, sa mise en page dans `dist/services.css` et son indicateur de section dans `dist/services.js`. Les liens et la FAQ fonctionnent sans JavaScript. L’organisation reprend les principes du catalogue de services de [seoplus+](https://seoplus.com/services/), avec une rédaction, des maquettes et une identité Karwisoft originales. La partie recherche IA s’appuie sur la [documentation Google](https://developers.google.com/search/docs/appearance/ai-features?hl=fr) ; aucune citation ou position n’est garantie.
+
 ## Utilisation
 
 - `npm start` sert le site sur http://127.0.0.1:3100 sans dépendance à installer.
