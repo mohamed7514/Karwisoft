@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { LandingChrome } from './Experience';
+import { SiteNavigation } from './SiteNavigation';
 
 export function SiteHeader() {
   return <>
@@ -8,14 +8,7 @@ export function SiteHeader() {
       <a className="brand" href="#accueil" aria-label="Karwisoft Marketing, accueil">karwisoft<span>marketing<span className="brand-dot">®</span>
       </span>
       </a>
-      <nav aria-label="Navigation principale">
-        <Link className="services-link" href="/services/">Services</Link>
-        <a href="#parcours">Le parcours</a>
-        <a className="presentation-link" href="?mode=presentation#accueil">Présenter <span aria-hidden="true">↗</span>
-        </a>
-        <a className="nav-offer" href="#offre">L’offre <span aria-hidden="true">↗</span>
-        </a>
-      </nav>
+      <SiteNavigation />
     </LandingChrome>
   </>;
 }

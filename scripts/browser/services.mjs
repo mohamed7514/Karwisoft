@@ -80,6 +80,10 @@ try {
     if(width===1440)await shot('services-full',true);
     await command('Page.navigate',{url:base},session);await pause(1000);
     assert(await evaluate('document.documentElement.scrollWidth<=innerWidth+1'),`landing navigation fits ${width}`);
+    if(await evaluate('document.querySelector(".site-menu-toggle").getClientRects().length>0')) {
+      await evaluate('document.querySelector(".site-menu-toggle").click()');await pause(80);
+      assert(await evaluate('document.querySelector(".site-menu-toggle").getAttribute("aria-expanded")==="true"'),`mobile landing menu opens ${width}`);
+    }
     assert(await evaluate('document.querySelector(".services-link").getBoundingClientRect().width>0'),`Services is visible in landing menu ${width}`);
     await evaluate('document.querySelector(".services-link").click()');await pause(500);
     assert(await evaluate('location.pathname==="/services/"'),'landing opens Services');

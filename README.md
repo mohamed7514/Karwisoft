@@ -14,7 +14,8 @@ La page `/services/` présente les quatre expertises Karwisoft : SEO, SEO pour l
 - Le lien **Présenter** ouvre `?mode=presentation#intro-1` : 19 diapositives, une seule visible à la fois, précédent/suivant, sommaire, plein écran si disponible et retour au site à la section courante. Les diapositives longues restent défilables.
 - Les flèches gauche/droite, Page précédente/suivante et Début/Fin naviguent dans la présentation. Les champs, boutons et le comparateur gardent leur fonctionnement au clavier.
 - Une ancre ouvre directement une étape, par exemple `?mode=presentation#demande` ou `?mode=presentation#offre`.
-- En présentation, la transformation illustrative se rejoue à la demande. En ligne, les animations GSAP au défilement sont conservées.
+- En présentation, la transformation illustrative se rejoue à la demande. En ligne, l’introduction reste animée et épinglée à partir de 1101 × 700 pixels ; en dessous, ses trois scènes se lisent dans le flux pour rester accessibles en paysage et au zoom.
+- Sur petit écran, le menu regroupe les quatre liens sans en supprimer. Les sections empilent leurs colonnes, les textes restent lisibles et les diapositives longues peuvent défiler verticalement.
 
 Le bouton final ouvre le logiciel de courriel vers **Contact@Karwisoft.com**. Le choix de formule actualise le résumé et l’objet du courriel. Aucun formulaire n’est envoyé par le site et aucun service de messagerie n’est connecté. La FAQ précise les modèles, le budget publicitaire et le relais de la réception. Aucun prix, témoignage ou résultat chiffré n’est inventé.
 
@@ -26,6 +27,7 @@ Le bouton final ouvre le logiciel de courriel vers **Contact@Karwisoft.com**. Le
 - `components/Demos.tsx` : quiz, comparateur de sourire, choix du parcours et explications interactives en React.
 - `components/LandingAnimations.tsx`, `lib/landing-animations.mjs` : GSAP chargé à la demande, avec nettoyage des animations et écouteurs à la sortie de la page.
 - `app/styles/` : CSS du design existant ; `public/assets/` : visuels WebP.
+- `app/styles/responsive.css`, `navigation.css` : tailles fluides, contenu dans le flux, commandes tactiles et menu mobile ; `components/SiteNavigation.tsx` : ouverture/fermeture, Échap et redimensionnement du menu.
 - `lib/presentation.ts` : identifiants, titres des diapositives et formules partagés.
 - `dist/` : ancienne version HTML conservée comme référence. Modifier désormais `app/`, `components/`, `lib/` et `public/`.
 
@@ -40,6 +42,8 @@ Sans JavaScript, la lecture en ligne et le lien de courriel restent disponibles.
 Après le build, avec `npm start` lancé, `npm run test:browser` exécute les contrôles Chrome de `scripts/browser/` : landing, 19 diapositives, clavier, sommaire, quiz, comparateur, animations, services, FAQ, trois formules et objets de courriel.
 
 Ces contrôles utilisent Chrome installé sur Windows, aux formats 1440×900, 1024×768, 768×1024, 390×844 et 320×568. `CHROME_PATH` permet de choisir un autre exécutable ; `KARWISOFT_TEST_URL` permet de cibler un autre serveur. Captures dans `../preview/next/`.
+
+`scripts/browser/responsive.mjs` complète les contrôles avec 15 formats de 320 à 1920 pixels, les paysages 844×390 et 667×375, une fenêtre équivalente au zoom à 200 %, et le redimensionnement sans rechargement. Il vérifie les limites réelles des titres et widgets, les chevauchements et l’accès à la fin des diapositives au-dessus des commandes. Captures dans `../preview/responsive/`.
 
 ## Démonstration et offre
 

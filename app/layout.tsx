@@ -5,6 +5,8 @@ import './styles/presentation.css';
 import './styles/journey.css';
 import './styles/modes.css';
 import './styles/services.css';
+import './styles/responsive.css';
+import './styles/navigation.css';
 
 export const metadata: Metadata = {
   title: 'Karwisoft — Pourquoi votre prochain patient vous choisirait-il ?',

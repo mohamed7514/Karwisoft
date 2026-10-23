@@ -1,0 +1,307 @@
+/* Layout follows the available space; long content stays in document flow. */
+:root {
+  --page-gutter: clamp(20px, 4.4vw, 72px);
+  --present-top-height: 72px;
+  --present-bottom-space: 88px;
+}
+
+.wrap {
+  width: calc(100% - 2 * var(--page-gutter));
+}
+
+.deck-layout > *, .next-row > *, .offer-heading > *, .workflow-grid > * {
+  min-width: 0;
+}
+
+.deck-layout, .wow-slide .deck-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 80px);
+  min-height: 0;
+  padding-block: clamp(48px, 6vw, 100px) 40px;
+}
+
+.deck-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.deck-copy h2, .wow-slide .deck-copy h2 {
+  font-size: clamp(32px, 4vw, 64px);
+  overflow-wrap: break-word;
+}
+
+.deck-bottom {
+  position: relative;
+  inset: auto;
+  margin-top: auto;
+  padding-block: 22px 30px;
+}
+
+.deck-bottom p { min-width: 0; }
+.deck-number { flex: 0 0 auto; }
+.deck-panel, .real-site, .phone-mock { max-width: 100%; }
+.deck-panel { overflow-wrap: break-word; }
+.deck-nav { top: auto; bottom: max(16px, env(safe-area-inset-bottom)); max-width: calc(100% - 24px); }
+.deck-nav button { width: 44px; height: 44px; flex-shrink: 0; }
+.deck-nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.hotspots button, .choice-buttons button, .quiz-options button { min-height: 44px; }
+.text-button { min-height: 44px; padding-inline: 6px; }
+.quiz-progress { gap: 12px; flex-wrap: wrap; }
+.range-label { display: block; line-height: 1.6; }
+#smile-range { min-height: 44px; }
+.intent-query { min-width: 0; overflow-wrap: anywhere; }
+.request-data > div { gap: 12px; }
+
+/* The cinematic pinned version is reserved for screens that can contain it. */
+html:not(.presenting) .story:not(.story-enhanced) .story-scene {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  height: auto;
+  min-height: 100svh;
+  padding-block: 64px 36px;
+}
+
+html:not(.presenting) .story:not(.story-enhanced) .story-scene:first-of-type {
+  padding-top: 136px;
+}
+
+html:not(.presenting) .story:not(.story-enhanced) .story-caption {
+  position: relative;
+  inset: auto;
+  order: 2;
+  padding: 0;
+}
+
+html:not(.presenting) .story:not(.story-enhanced) .story-caption h2 {
+  max-width: 100%;
+  font-size: clamp(40px, 7vw, 76px);
+  letter-spacing: -.045em;
+}
+
+html:not(.presenting) .story:not(.story-enhanced) .story-search .story-caption h2 {
+  font-size: clamp(40px, 8.4vw, 88px);
+}
+
+html:not(.presenting) .story:not(.story-enhanced) .story-caption > p:last-of-type {
+  max-width: 44ch;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+html:not(.presenting) .story:not(.story-enhanced) .story-search-query,
+html:not(.presenting) .story:not(.story-enhanced) .story-browser {
+  position: relative;
+  inset: auto;
+  order: 1;
+  width: min(520px, calc(100% - 2 * var(--page-gutter)));
+  margin-inline: auto;
+  transform: none;
+}
+
+html:not(.presenting) .story:not(.story-enhanced) .story-search-query {
+  margin-bottom: clamp(40px, 9svh, 100px);
+  font-size: 12px;
+}
+
+html:not(.presenting) .story:not(.story-enhanced) .story-browser .clinic-hero {
+  height: clamp(170px, 28vw, 265px);
+}
+
+html:not(.presenting) .story:not(.story-enhanced) .scene-credit {
+  position: relative;
+  inset: auto;
+  order: 3;
+  margin-inline: var(--page-gutter);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.story-enhanced .story-caption h2 { max-width: 48%; }
+.story-enhanced .story-search .story-caption h2 { max-width: 52%; }
+
+/* Slide content can grow vertically, including on small landscape screens. */
+.presenting body {
+  padding-top: var(--present-top-height);
+  padding-bottom: var(--present-bottom-space);
+}
+
+.presenting .story-scene {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  height: auto;
+  min-height: calc(100svh - var(--present-top-height) - var(--present-bottom-space));
+  padding-block: clamp(32px, 5vw, 64px);
+}
+
+.presenting .story .story-caption {
+  position: relative;
+  inset: auto;
+  order: 1;
+  min-height: 0;
+  padding: 0;
+}
+
+.presenting .story-caption h2, .presenting .story-search .story-caption h2,
+.presenting .story-discover .story-caption h2, .presenting .story-choice .story-caption h2 {
+  max-width: 100%;
+  font-size: clamp(36px, 6vw, 82px);
+  letter-spacing: -.045em;
+}
+
+.presenting .story-caption > p:last-of-type { max-width: 48ch; font-size: 14px; }
+.presenting .story .story-browser {
+  display: block;
+  position: relative;
+  inset: auto;
+  order: 2;
+  width: min(500px, calc(100% - 2 * var(--page-gutter)));
+  margin: 0 auto;
+  transform: none;
+}
+.presenting .story-browser .clinic-hero { height: clamp(170px, 24vw, 265px); }
+.presenting .story .story-search-query { display: none; }
+.presenting .story .scene-credit {
+  position: relative;
+  inset: auto;
+  order: 3;
+  margin-inline: var(--page-gutter);
+  font-size: 10px;
+  line-height: 1.6;
+}
+.presenting .deck-slide { min-height: calc(100svh - var(--present-top-height) - var(--present-bottom-space)); }
+.presenting .deck-layout, .presenting .wow-slide .deck-layout {
+  min-height: 0;
+  padding-block: clamp(30px, 4vw, 60px);
+  gap: clamp(24px, 4vw, 64px);
+}
+.presenting .deck-bottom { inset: auto; padding-block: 20px 28px; }
+.presenting .deck-copy h2 { font-size: clamp(32px, 3.5vw, 54px); }
+.presenting .deck-intro, .presenting .next-section, .presenting .workflow-section {
+  min-height: calc(100svh - var(--present-top-height) - var(--present-bottom-space));
+  padding-block: clamp(32px, 5vw, 64px);
+}
+.presenting .present-top { height: var(--present-top-height); }
+.present-controls { width: max-content; }
+.presenting .next-row { width: 100%; }
+
+@media (min-width: 1001px) and (min-height: 600px) {
+  .presenting .story-discover {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-content: center;
+    align-items: center;
+    gap: 28px 40px;
+    padding-inline: var(--page-gutter);
+  }
+  .presenting .story .story-discover .story-caption { width: 100%; margin: 0; }
+  .presenting .story .story-discover .story-browser { width: 100%; }
+  .presenting .story .story-discover .scene-credit { grid-column: 1 / -1; margin: 0; }
+}
+
+@media (max-width: 1100px) {
+  .phone-mock { margin-inline: auto; transform: none; }
+  .offer-heading, .next-row { gap: 28px; }
+}
+
+@media (max-width: 1000px) {
+  .deck-layout, .wow-slide .deck-layout,
+  .presenting .deck-layout, .presenting .wow-slide .deck-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+  .deck-copy { max-width: 720px; padding-top: 0; }
+  .deck-copy h2, .wow-slide .deck-copy h2, .presenting .deck-copy h2 { font-size: clamp(32px, 5.2vw, 52px); }
+  .deck-copy > p:last-child { max-width: 56ch; font-size: 14px; }
+  .deck-demo { width: 100%; max-width: 580px; margin-inline: auto; }
+  .deck-panel { max-width: none; padding: clamp(20px, 4vw, 32px); }
+  .real-hero, .presenting .real-hero { height: clamp(240px, 38vw, 360px); }
+  .offer-grid { grid-template-columns: minmax(0, 1fr); max-width: 640px; margin-inline: auto; }
+  .offer-grid .offer-card { padding: 28px; }
+  .offer-grid .offer-card h3 { font-size: clamp(32px, 5vw, 42px); }
+  .offer-grid .offer-price { display: flex; }
+  .offer-grid .offer-price > span { text-align: right; }
+  .offer-grid .model-button { font-size: 12px; min-height: 48px; }
+  .offer-heading { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .offer-heading > p:last-child { max-width: 55ch; }
+}
+
+@media (max-width: 760px) {
+  :root { --present-top-height: 64px; }
+  .deck-intro h2, .workflow-section h2, .presenting .deck-intro h2,
+  .next-row h2, .faq-section h2, .offer-heading h2, .presenting .offer-heading h2 {
+    font-size: clamp(30px, 6.7vw, 44px);
+    letter-spacing: -.04em;
+  }
+  .deck-intro, .workflow-section, .next-section, .faq-section { padding-block: 56px; }
+  .deck-panel p, .deck-panel .fine { font-size: 12px; }
+  .deck-panel h3 { font-size: clamp(24px, 5vw, 30px); }
+  .panel-label { letter-spacing: .6px; gap: 10px; flex-wrap: wrap; }
+  .hotspots { gap: 6px; flex-wrap: wrap; }
+  .hotspots button { flex: 1 1 90px; justify-content: center; font-size: 11px; padding: 10px; }
+  .hotspot-detail { font-size: 12px; min-height: 0; line-height: 1.7; }
+  .deck-bottom { align-items: flex-start; gap: 16px; padding-bottom: 28px; }
+  .deck-bottom p { font-size: 12px; }
+  .deck-bottom p > span { font-size: 9px; }
+  .deck-nav { top: auto; bottom: max(12px, env(safe-area-inset-bottom)); gap: 8px; }
+  .next-row { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .next-detail .micro, .next-detail .contact-note { max-width: 52ch; font-size: 13px; }
+  .next-detail > p:first-child { font-size: 15px; }
+  .offer-common ul { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .offer-common strong { font-size: 14px; }
+  .offer-common li > span, .offer-card > p { font-size: 13px; }
+  .offer-platform, .offer-note { font-size: 12px; }
+  .offer-note { display: block; }
+  .offer-grid .offer-card { padding: 24px; }
+  .launch-bonus { gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+  .launch-bonus > div { min-width: 0; flex: 1 1 220px; }
+  .launch-bonus h3 { font-size: 24px; }
+  .launch-bonus > div > p:last-child { font-size: 12px; line-height: 1.8; }
+  .bonus-label { width: 100%; margin-left: 0; text-align: left; font-size: 10px; }
+  .workflow-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .workflow-grid strong { font-size: 16px; overflow-wrap: break-word; }
+  .workflow-grid p, .workflow-foot { font-size: 12px; }
+  .workflow-grid > div { padding: 22px 16px; }
+  .workflow-rules > span { font-size: 11px; }
+  .present-top > a:last-child { min-height: 44px; display: inline-flex; align-items: center; }
+  .presenting .present-top { padding-inline: var(--page-gutter); gap: 12px; }
+  .presenting .story-caption h2, .presenting .story-search .story-caption h2,
+  .presenting .story-discover .story-caption h2, .presenting .story-choice .story-caption h2 { font-size: clamp(36px, 8vw, 56px); }
+  .presenting .story-caption .eyebrow { font-size: 10px; }
+  .presenting .story-caption > p:last-of-type { font-size: 14px; line-height: 1.8; }
+  .present-controls { gap: 4px; }
+  .footer { flex-wrap: wrap; gap: 24px; padding-bottom: 100px; }
+  .footer > span { max-width: none; width: 100%; text-align: left; font-size: 11px; }
+}
+
+@media (max-width: 400px) {
+  .present-top .brand { font-size: 22px; }
+  .present-top > a:last-child { font-size: 11px; }
+  .workflow-grid { grid-template-columns: minmax(0, 1fr); }
+  .workflow-grid > div { min-height: 0; }
+  .workflow-grid > div > span { margin-bottom: 14px; }
+  .real-caption h3 { font-size: 27px; }
+  .real-caption small { font-size: 7px; letter-spacing: 1px; }
+  .deck-panel { padding: 20px; }
+  .request-data > div { flex-wrap: wrap; }
+}
+
+@media (max-height: 500px) {
+  :root { --present-top-height: 60px; --present-bottom-space: 80px; }
+  .present-top > span { display: none; }
+  .presenting .story-scene { justify-content: flex-start; }
+  .presenting .story .story-browser { max-width: 400px; }
+  .presenting .deck-layout, .presenting .wow-slide .deck-layout { padding-block: 32px; }
+  .presenting .real-hero { height: 260px; }
+}
+
+@media print {
+  .presenting body { padding: 0; }
+  .presenting .story-scene { min-height: 80vh; }
+  .deck-nav, .present-controls { display: none !important; }
+}
