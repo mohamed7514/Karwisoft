@@ -3,14 +3,14 @@
 import Link from 'next/link';
 import { useEffect, useId, useRef, useState } from 'react';
 
-export function SiteNavigation() {
+export function SiteNavigation({ services = false }: { services?: boolean }) {
   const [open, setOpen] = useState(false);
   const menuId = useId();
   const container = useRef<HTMLDivElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const desktop = window.matchMedia('(min-width: 761px)');
+    const desktop = window.matchMedia('(min-width: 1001px)');
     const closeOnDesktop = () => {
       if (desktop.matches) setOpen(false);
     };
@@ -57,10 +57,18 @@ export function SiteNavigation() {
       <span className="site-menu-icon" aria-hidden="true"><span /><span /></span>
     </button>
     <nav id={menuId} className="site-menu" aria-label="Navigation principale" data-open={open}>
-      <Link className="services-link" href="/services/" onClick={close}>Services</Link>
-      <a href="#parcours" onClick={close}>Le parcours</a>
-      <a className="presentation-link" href="?mode=presentation#accueil" onClick={close}>Présenter <span aria-hidden="true">↗</span></a>
-      <a className="nav-offer" href="#offre" onClick={close}>L’offre <span aria-hidden="true">↗</span></a>
+      <div className="site-menu-links">
+        <Link className="services-link" href="/services/" aria-current={services ? 'page' : undefined} onClick={close}>Services</Link>
+        <a href={services ? '/#parcours' : '#parcours'} onClick={close}>Le parcours</a>
+        <a className="nav-offer" href={services ? '/#offre' : '#offre'} onClick={close}>L’offre</a>
+      </div>
+      <div className="site-menu-actions">
+        <a className="presentation-link" href="/?mode=presentation#intro-1" title="Ouvrir le mode présentation" onClick={close}>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="13" rx="2" /><path d="m8 21 4-5 4 5M9 8l6 3-6 3V8Z" /></svg>
+          <span>Mode présentation</span>
+        </a>
+        <a className="site-contact" href={services ? '#contact' : '#suite'} onClick={close}>Parlons de votre projet <span aria-hidden="true">↗</span></a>
+      </div>
     </nav>
   </div>;
 }

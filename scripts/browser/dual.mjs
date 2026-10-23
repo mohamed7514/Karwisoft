@@ -66,24 +66,24 @@ try {
     await command('Page.navigate',{url:base},session);await pause(600);
     assert(await evaluate('document.documentElement.scrollWidth<=innerWidth+1'),`online page fits ${width}`);
     assert(await evaluate('[...document.querySelectorAll("a")].filter(a=>a.hash).every(a=>document.getElementById(a.hash.slice(1)))'),`online anchors resolve ${width}`);
-    if(width<=760) {
-      assert(await evaluate('document.querySelector(".site-menu-toggle").getAttribute("aria-expanded")==="false"&&[...document.querySelectorAll(".site-menu>a")].every(a=>!a.getClientRects().length)'),`closed mobile menu hides links ${width}`);
+    if(width<=1000) {
+      assert(await evaluate('document.querySelector(".site-menu-toggle").getAttribute("aria-expanded")==="false"&&[...document.querySelectorAll(".site-menu a")].every(a=>!a.getClientRects().length)'),`closed mobile menu hides links ${width}`);
       await click('.site-menu-toggle');
-      assert(await evaluate('document.querySelector(".site-menu-toggle").getAttribute("aria-controls")===document.querySelector(".site-menu").id&&document.querySelector(".site-menu-toggle").getAttribute("aria-expanded")==="true"&&document.querySelectorAll(".site-menu>a").length===4&&[...document.querySelectorAll(".site-menu>a")].every(a=>a.getBoundingClientRect().height>=44)'),`mobile menu exposes all four touch targets ${width}`);
-      await evaluate('document.querySelector(".site-menu>a").focus()');
+      assert(await evaluate('document.querySelector(".site-menu-toggle").getAttribute("aria-controls")===document.querySelector(".site-menu").id&&document.querySelector(".site-menu-toggle").getAttribute("aria-expanded")==="true"&&document.querySelectorAll(".site-menu a").length===5&&[...document.querySelectorAll(".site-menu a")].every(a=>a.getBoundingClientRect().height>=44)'),`mobile menu exposes all five touch targets ${width}`);
+      await evaluate('document.querySelector(".site-menu a").focus()');
       await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape'},session);await pause(80);
       assert(await evaluate('document.querySelector(".site-menu-toggle").getAttribute("aria-expanded")==="false"&&document.activeElement===document.querySelector(".site-menu-toggle")&&!document.querySelector(".site-menu").getClientRects().length'),`Escape closes menu and restores focus ${width}`);
-      await click('.site-menu-toggle');await click('.site-menu>a[href="#parcours"]');
+      await click('.site-menu-toggle');await click('.site-menu a[href="#parcours"]');
       assert(await evaluate('location.hash==="#parcours"&&document.querySelector(".site-menu-toggle").getAttribute("aria-expanded")==="false"&&!document.querySelector(".site-menu").getClientRects().length'),`menu selection navigates and closes ${width}`);
       if(width===390) {
         await click('.site-menu-toggle');
         await command('Emulation.setDeviceMetricsOverride',{width:1024,height:768,deviceScaleFactor:1,mobile:false},session);await pause(120);
-        assert(await evaluate('!document.querySelector(".site-menu-toggle").getClientRects().length&&document.querySelector(".site-menu-toggle").getAttribute("aria-expanded")==="false"&&[...document.querySelectorAll(".site-menu>a")].every(a=>a.getClientRects().length)'), 'desktop navigation appears on resize without reloading');
+        assert(await evaluate('!document.querySelector(".site-menu-toggle").getClientRects().length&&document.querySelector(".site-menu-toggle").getAttribute("aria-expanded")==="false"&&[...document.querySelectorAll(".site-menu a")].every(a=>a.getClientRects().length)'), 'desktop navigation appears on resize without reloading');
         await command('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true},session);await pause(120);
         assert(await evaluate('document.querySelector(".site-menu-toggle").getClientRects().length>0&&!document.querySelector(".site-menu").getClientRects().length'), 'returning to mobile restores the closed menu');
       }
     } else {
-      assert(await evaluate('!document.querySelector(".site-menu-toggle").getClientRects().length&&document.querySelectorAll(".site-menu>a").length===4&&[...document.querySelectorAll(".site-menu>a")].every(a=>a.getClientRects().length)'),`desktop navigation keeps all four links visible ${width}`);
+      assert(await evaluate('!document.querySelector(".site-menu-toggle").getClientRects().length&&document.querySelectorAll(".site-menu a").length===5&&[...document.querySelectorAll(".site-menu a")].every(a=>a.getClientRects().length)'),`desktop navigation keeps all five links visible ${width}`);
     }
     await click('.model-button[data-model="essentielle"]');
     assert(await evaluate('document.querySelector("#contact-link").href.includes("mailto:Contact@Karwisoft.com")&&decodeURIComponent(document.querySelector("#contact-link").href).includes("Essentielle")'),'contact includes Essentielle formula');

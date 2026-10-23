@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { SiteHeader } from '../../components/SiteHeader';
 import { ServicesObserver } from '../../components/ServicesObserver';
 export const metadata: Metadata={
   title: "Services — SEO, SEO IA, Google Ads et sites web | Karwisoft",
@@ -7,11 +7,7 @@ export const metadata: Metadata={
 };
 export default function ServicesPage() {
   return <div className="services-page">
-    <a className="skip" href="#main">Aller au contenu</a>
-    <header className="services-header wrap">
-      <Link className="brand" href="/" aria-label="Karwisoft Marketing, accueil">karwisoft<span>marketing<span className="brand-dot">®</span></span></Link>
-      <nav aria-label="Navigation principale"><Link href="/">Accueil</Link><a href="./" aria-current="page">Services</a><a href="/?mode=presentation#intro-1" className="tablet-link">La présentation ↗</a><a className="services-contact" href="#contact">Parlons de votre projet <span aria-hidden="true">↗</span></a></nav>
-    </header>
+    <SiteHeader services />
     <main id="main">
       <section className="services-hero wrap" aria-labelledby="services-title">
         <div className="services-hero-copy"><p className="eyebrow"><span className="tiny-cross" aria-hidden="true">✳</span> NOS SERVICES / CLINIQUES DENTAIRES</p><h1 id="services-title">Votre expertise.<br />La visibilité<br /><em>qu’elle mérite.</em></h1><p>Être trouvé. Donner confiance. Faciliter le premier contact. Quatre expertises qui travaillent ensemble pour votre clinique.</p><div className="services-actions"><a className="service-button primary" href="#expertises">Explorer nos services <span aria-hidden="true">↓</span></a><a className="service-text-link" href="#contact">Parlons de votre clinique ↗</a></div></div>

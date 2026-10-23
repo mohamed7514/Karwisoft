@@ -15,7 +15,8 @@ La page `/services/` présente les quatre expertises Karwisoft : SEO, SEO pour l
 - Les flèches gauche/droite, Page précédente/suivante et Début/Fin naviguent dans la présentation. Les champs, boutons et le comparateur gardent leur fonctionnement au clavier.
 - Une ancre ouvre directement une étape, par exemple `?mode=presentation#demande` ou `?mode=presentation#offre`.
 - En présentation, la transformation illustrative se rejoue à la demande. En ligne, l’introduction reste animée et épinglée à partir de 1101 × 700 pixels ; en dessous, ses trois scènes se lisent dans le flux pour rester accessibles en paysage et au zoom.
-- Sur petit écran, le menu regroupe les quatre liens sans en supprimer. Les sections empilent leurs colonnes, les textes restent lisibles et les diapositives longues peuvent défiler verticalement.
+- L’accueil et les services partagent une barre crème opaque, visible au défilement : Services, Le parcours, L’offre, un accès secondaire au mode présentation et le bouton « Parlons de votre projet ». Le menu se replie à 1000 pixels et conserve tous ces accès.
+- Sur petit écran, les sections empilent leurs colonnes, les textes restent lisibles et les diapositives longues peuvent défiler verticalement.
 
 Le bouton final ouvre le logiciel de courriel vers **Contact@Karwisoft.com**. Le choix de formule actualise le résumé et l’objet du courriel. Aucun formulaire n’est envoyé par le site et aucun service de messagerie n’est connecté. La FAQ précise les modèles, le budget publicitaire et le relais de la réception. Aucun prix, témoignage ou résultat chiffré n’est inventé.
 
@@ -44,6 +45,8 @@ Après le build, avec `npm start` lancé, `npm run test:browser` exécute les co
 Ces contrôles utilisent Chrome installé sur Windows, aux formats 1440×900, 1024×768, 768×1024, 390×844 et 320×568. `CHROME_PATH` permet de choisir un autre exécutable ; `KARWISOFT_TEST_URL` permet de cibler un autre serveur. Captures dans `../preview/next/`.
 
 `scripts/browser/responsive.mjs` complète les contrôles avec 15 formats de 320 à 1920 pixels, les paysages 844×390 et 667×375, une fenêtre équivalente au zoom à 200 %, et le redimensionnement sans rechargement. Il vérifie les limites réelles des titres et widgets, les chevauchements et l’accès à la fin des diapositives au-dessus des commandes. Captures dans `../preview/responsive/`.
+
+`scripts/browser/navigation.mjs` vérifie la barre partagée sur neuf formats, sa lisibilité sur fond opaque, les cibles tactiles, le bouton de contact et sa position après défilement sur les deux pages.
 
 ## Démonstration et offre
 

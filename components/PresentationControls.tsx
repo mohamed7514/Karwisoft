@@ -24,7 +24,7 @@ export function PresentationControls() {
   }
 
   return <>
-    <div className="present-top" hidden={!presenting}><a className="brand" href="?" aria-label="Karwisoft, retour au site">karwisoft<span>marketing</span></a><span>Le parcours de votre prochain patient</span><a id="leave-presentation" href={'?#'+(index<3? 'accueil':frames[index][0])}>Retour au site ↗</a></div>
+    <div className="present-top" hidden={!presenting}><a className="brand" href="?" aria-label="Karwisoft, retour au site">karwisoft<span>marketing</span></a><span className="presentation-context"><span>MODE PRÉSENTATION</span>Le parcours de votre prochain patient</span><a id="leave-presentation" href={'?#'+(index<3? 'accueil':frames[index][0])}>Retour au site <span aria-hidden="true">↗</span></a></div>
     <nav className="present-controls" aria-label="Commandes de présentation" hidden={!presenting}>
       <button id="present-prev" type="button" aria-label="Diapositive précédente" disabled={index===0} onClick={() => goTo(frames[index-1][0])}>←</button>
       <button id="present-overview" type="button" aria-haspopup="dialog" onClick={() => overview.current?.showModal()}>Sommaire</button>
