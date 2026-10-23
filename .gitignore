@@ -2,3 +2,7 @@ node_modules/
 .DS_Store
 .openai/local/
 *.tar.gz
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts

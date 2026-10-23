@@ -1,12 +1,15 @@
 # Karwisoft — landing page et présentation
 
-Une page pour présenter l’offre aux cliniques dentaires, avec deux modes qui partagent les mêmes contenus. Le site patient Épure reste dans `../site-patient`.
+Site Karwisoft en **Next.js 16.4.3, React 19 et TypeScript**, avec App Router et export statique. La landing page et les 19 diapositives partagent les mêmes composants et contenus. Le site patient Épure reste dans `../site-patient`.
 
-La page `/services/` présente les quatre expertises Karwisoft : SEO, SEO pour la recherche IA, Google Ads et création de sites web. Elle est reliée au menu de l’accueil, au mode présentation et au contact par courriel. Son contenu est dans `dist/services/index.html`, sa mise en page dans `dist/services.css` et son indicateur de section dans `dist/services.js`. Les liens et la FAQ fonctionnent sans JavaScript. L’organisation reprend les principes du catalogue de services de [seoplus+](https://seoplus.com/services/), avec une rédaction, des maquettes et une identité Karwisoft originales. La partie recherche IA s’appuie sur la [documentation Google](https://developers.google.com/search/docs/appearance/ai-features?hl=fr) ; aucune citation ou position n’est garantie.
+La page `/services/` présente les quatre expertises Karwisoft : SEO, SEO pour la recherche IA, Google Ads et création de sites web. Son contenu est dans `app/services/page.tsx`, son style dans `app/styles/services.css` et son indicateur de section dans `components/ServicesObserver.tsx`. Les liens et la FAQ fonctionnent sans JavaScript. L’organisation reprend les principes du catalogue de services de [seoplus+](https://seoplus.com/services/), avec une rédaction, des maquettes et une identité Karwisoft originales. La partie recherche IA s’appuie sur la [documentation Google](https://developers.google.com/search/docs/appearance/ai-features?hl=fr) ; aucune citation ou position n’est garantie.
 
 ## Utilisation
 
-- `npm start` sert le site sur http://127.0.0.1:3100 sans dépendance à installer.
+- Node.js 20.9 minimum. Installer les dépendances avec `npm ci`.
+- `npm run dev` lance Next.js sur http://127.0.0.1:3100 pour le développement.
+- `npm run build` préconstruit les pages et génère `out/`.
+- `npm start` sert cet export sur http://127.0.0.1:3100. Exécuter le build au préalable.
 - L’adresse principale ouvre la landing : introduction animée, parcours interactif, trois formules Google Ads, bonus de lancement, FAQ et contact.
 - Le lien **Présenter** ouvre `?mode=presentation#intro-1` : 19 diapositives, une seule visible à la fois, précédent/suivant, sommaire, plein écran si disponible et retour au site à la section courante. Les diapositives longues restent défilables.
 - Les flèches gauche/droite, Page précédente/suivante et Début/Fin naviguent dans la présentation. Les champs, boutons et le comparateur gardent leur fonctionnement au clavier.
@@ -17,22 +20,26 @@ Le bouton final ouvre le logiciel de courriel vers **Contact@Karwisoft.com**. Le
 
 ## Fichiers
 
-- `dist/index.html` : contenu commun, FAQ, contact et commandes de présentation.
-- `dist/styles.css`, `dist/presentation.css`, `dist/journey.css` : identité et animations existantes.
-- `dist/modes.css`, `dist/modes.js` : présentation sur tablette, sommaire, plein écran et mises en page adaptées.
-- `dist/app.js` : démonstrations, choix de formule et navigation du parcours en ligne.
-- `dist/presentation.js`, `dist/journey.js` : animations de la landing, désactivées en présentation pour éviter de bloquer la navigation par diapositives.
-- `dist/assets/` et `dist/vendor/` : visuels WebP et GSAP local.
+- `app/layout.tsx`, `app/page.tsx`, `app/services/page.tsx` : layout partagé, métadonnées et routes Next.js.
+- `components/StoryIntro.tsx`, `PatientJourney.tsx`, `Offer.tsx`, `Closing.tsx` : contenus éditoriaux rendus au build.
+- `components/Experience.tsx`, `PresentationControls.tsx` : état React, navigation des 19 diapositives, sommaire, plein écran, clavier et sélection de formule.
+- `components/Demos.tsx` : quiz, comparateur de sourire, choix du parcours et explications interactives en React.
+- `components/LandingAnimations.tsx`, `lib/landing-animations.mjs` : GSAP chargé à la demande, avec nettoyage des animations et écouteurs à la sortie de la page.
+- `app/styles/` : CSS du design existant ; `public/assets/` : visuels WebP.
+- `lib/presentation.ts` : identifiants, titres des diapositives et formules partagés.
+- `dist/` : ancienne version HTML conservée comme référence. Modifier désormais `app/`, `components/`, `lib/` et `public/`.
+
+L’export statique est déclaré dans `next.config.ts` et `.openai/hosting.json` pointe vers `out/`. Les contenus sont accessibles dans le HTML préconstruit ; React hydrate les interactions. Aucun serveur Next.js n’est nécessaire pour l’hébergement actuel. GSAP provient du paquet npm, sans injection des anciens scripts HTML.
 
 Sans JavaScript, la lecture en ligne et le lien de courriel restent disponibles. Le mode présentation nécessite JavaScript. La préférence de réduction des animations est respectée.
 
 ## Vérification
 
-`npm run check` vérifie la syntaxe des scripts du site et du serveur d’aperçu.
+`npm run check` vérifie TypeScript et la syntaxe du serveur d’aperçu. `npm run build` vérifie également la compilation et la génération des pages.
 
-Le contrôle ciblé des formules est disponible depuis le dossier parent : `node tools/budget-check.mjs`, avec le serveur lancé. Il vérifie les trois choix, les prestations communes, le récapitulatif et l’objet du courriel dans la landing et le mode présentation, sur cinq formats, ainsi que la cohérence de la page Services.
+Après le build, avec `npm start` lancé, `npm run test:browser` exécute les contrôles Chrome de `scripts/browser/` : landing, 19 diapositives, clavier, sommaire, quiz, comparateur, animations, services, FAQ, trois formules et objets de courriel.
 
-Depuis le dossier parent, avec le serveur lancé : `node tools/dual-check.mjs`. Ce contrôle utilise Chrome installé sur Windows, aux formats 1440×900, 1024×768, 768×1024, 390×844 et 320×568. Il vérifie les 19 diapositives, les ancres, le sommaire, le quiz, le comparateur, le clavier, les choix de formule, l’adresse de contact, les animations et les erreurs JavaScript. Captures dans `../preview/next/dual-*.png`.
+Ces contrôles utilisent Chrome installé sur Windows, aux formats 1440×900, 1024×768, 768×1024, 390×844 et 320×568. `CHROME_PATH` permet de choisir un autre exécutable ; `KARWISOFT_TEST_URL` permet de cibler un autre serveur. Captures dans `../preview/next/`.
 
 ## Démonstration et offre
 
