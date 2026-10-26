@@ -1,6 +1,6 @@
 import { SlideFrame,ExperienceRegion } from './Experience';
 import { JourneyNavigation } from './PresentationControls';
-import { IntakeQuiz,SmileComparison,HeroHotspots,BranchChoice,ReplaySmile } from './Demos';
+import { IntakeQuiz,HeroHotspots,BranchChoice,ReplaySmile } from './Demos';
 
 export function PatientJourney() {
   return <>
@@ -42,7 +42,7 @@ export function PatientJourney() {
         <div className="deck-bottom wrap">
           <p>
             <span>LE GAIN POUR VOTRE CLINIQUE</span>Concentrer le budget sur les recherches qui correspondent à vos soins et à votre zone.</p>
-          <span className="deck-number">01 <i>/ 13</i>
+          <span className="deck-number">01 <i>/ 12</i>
           </span>
         </div>
       </SlideFrame>
@@ -76,7 +76,7 @@ export function PatientJourney() {
         <div className="deck-bottom wrap">
           <p>
             <span>LE GAIN POUR VOTRE CLINIQUE</span>Donner une raison de découvrir votre approche dès l’annonce.</p>
-          <span className="deck-number">02 <i>/ 13</i>
+          <span className="deck-number">02 <i>/ 12</i>
           </span>
         </div>
       </SlideFrame>
@@ -161,7 +161,7 @@ export function PatientJourney() {
         <div className="deck-bottom wrap">
           <p>
             <span>LE GAIN POUR VOTRE CLINIQUE</span>Donner à chaque visite une chance de devenir une conversation.</p>
-          <span className="deck-number">03 <i>/ 13</i>
+          <span className="deck-number">03 <i>/ 12</i>
           </span>
         </div>
       </SlideFrame>
@@ -199,7 +199,7 @@ export function PatientJourney() {
         <div className="deck-bottom wrap">
           <p>
             <span>LE GAIN POUR VOTRE CLINIQUE</span>Répondre à ses hésitations avant qu’il décide de vous contacter.</p>
-          <span className="deck-number">04 <i>/ 13</i>
+          <span className="deck-number">04 <i>/ 12</i>
           </span>
         </div>
       </SlideFrame>
@@ -231,7 +231,7 @@ export function PatientJourney() {
         <div className="deck-bottom wrap">
           <p>
             <span>LE GAIN POUR VOTRE CLINIQUE</span>Limiter les obstacles entre son intention et le contact avec votre équipe.</p>
-          <span className="deck-number">05 <i>/ 13</i>
+          <span className="deck-number">05 <i>/ 12</i>
           </span>
         </div>
       </SlideFrame>
@@ -273,42 +273,11 @@ export function PatientJourney() {
         <div className="deck-bottom wrap">
           <p>
             <span>LE GAIN POUR VOTRE CLINIQUE</span>Moins d’informations à redemander ; plus de contexte pour préparer le rappel.</p>
-          <span className="deck-number">06 <i>/ 13</i>
+          <span className="deck-number">06 <i>/ 12</i>
           </span>
         </div>
       </SlideFrame>
-      <SlideFrame className="deck-slide " id="preview" data-deck="7" aria-labelledby="title-preview">
-        <picture className="deck-photo">
-          <source srcSet="/assets/reaction-800.webp 800w, /assets/reaction-1536.webp 1536w" sizes="100vw" />
-          <img src="/assets/reaction-1536.webp" width="1536" height="1024" loading="lazy" alt="La patiente découvre une expérience visuelle sur son ordinateur." />
-        </picture>
-        <div className="deck-shade" aria-hidden="true">
-        </div>
-        <div className="deck-layout wrap">
-          <div className="deck-copy">
-            <p className="eyebrow">Il envisage un traitement. Comment en parler ?</p>
-            <h2 id="title-preview">Son souhait devient<br />
-              <em>plus concret.</em>
-            </h2>
-            <p>Un aperçu illustratif l’aide à montrer ce qui l’intéresse et à poser ses questions. La conversation se poursuit avec votre équipe lors de l’évaluation.</p>
-          </div>
-          <div className="deck-demo">
-            <div className="deck-panel">
-              <div className="panel-label">SMILEPREVIEW · ESSAYEZ LE SLIDER<span>EXEMPLE</span>
-              </div>
-              <SmileComparison />
-              <p className="fine">Exemple prédéfini, non généré à partir des photos du visiteur. Aucun diagnostic, résultat clinique ou délai garanti.</p>
-            </div>
-          </div>
-        </div>
-        <div className="deck-bottom wrap">
-          <p>
-            <span>LE GAIN POUR VOTRE CLINIQUE</span>Transformer la curiosité en une occasion d’échanger sur son projet.</p>
-          <span className="deck-number">07 <i>/ 13</i>
-          </span>
-        </div>
-      </SlideFrame>
-      <SlideFrame className="deck-slide " id="demande" data-deck="8" aria-labelledby="title-demande">
+      <SlideFrame className="deck-slide " id="demande" data-deck="7" aria-labelledby="title-demande">
         <picture className="deck-photo">
           <source srcSet="/assets/reminder-800.webp 800w, /assets/reminder-1536.webp 1536w" sizes="100vw" />
           <img src="/assets/reminder-1536.webp" width="1536" height="1024" loading="lazy" alt="La patiente prépare tranquillement son rendez-vous sur son téléphone." />
@@ -335,11 +304,11 @@ export function PatientJourney() {
         <div className="deck-bottom wrap">
           <p>
             <span>LE GAIN POUR VOTRE CLINIQUE</span>Recevoir un contact structuré, avec les informations utiles pour le rappeler.</p>
-          <span className="deck-number">08 <i>/ 13</i>
+          <span className="deck-number">07 <i>/ 12</i>
           </span>
         </div>
       </SlideFrame>
-      <SlideFrame className="deck-slide " id="reception" data-deck="9" aria-labelledby="title-reception">
+      <SlideFrame className="deck-slide " id="reception" data-deck="8" aria-labelledby="title-reception">
         <picture className="deck-photo">
           <source srcSet="/assets/reception-800.webp 800w, /assets/reception-1536.webp 1536w" sizes="100vw" />
           <img src="/assets/reception-1536.webp" width="1536" height="1024" loading="lazy" alt="La réceptionniste consulte une demande à son bureau." />
@@ -396,11 +365,11 @@ export function PatientJourney() {
         <div className="deck-bottom wrap">
           <p>
             <span>LE GAIN POUR VOTRE CLINIQUE</span>Traiter la demande rapidement, avec son contexte, pendant que le projet est présent à l’esprit.</p>
-          <span className="deck-number">09 <i>/ 13</i>
+          <span className="deck-number">08 <i>/ 12</i>
           </span>
         </div>
       </SlideFrame>
-      <SlideFrame className="deck-slide " id="rappels" data-deck="10" aria-labelledby="title-rappels">
+      <SlideFrame className="deck-slide " id="rappels" data-deck="9" aria-labelledby="title-rappels">
         <picture className="deck-photo">
           <source srcSet="/assets/reminder-800.webp 800w, /assets/reminder-1536.webp 1536w" sizes="100vw" />
           <img src="/assets/reminder-1536.webp" width="1536" height="1024" loading="lazy" alt="La patiente consulte un message près de son agenda." />
@@ -433,11 +402,11 @@ export function PatientJourney() {
         <div className="deck-bottom wrap">
           <p>
             <span>LE GAIN POUR VOTRE CLINIQUE</span>Anticiper les changements et faciliter la réorganisation de votre agenda.</p>
-          <span className="deck-number">10 <i>/ 13</i>
+          <span className="deck-number">09 <i>/ 12</i>
           </span>
         </div>
       </SlideFrame>
-      <SlideFrame className="deck-slide " id="avis" data-deck="11" aria-labelledby="title-avis">
+      <SlideFrame className="deck-slide " id="avis" data-deck="10" aria-labelledby="title-avis">
         <picture className="deck-photo">
           <source srcSet="/assets/review-800.webp 800w, /assets/review-1536.webp 1536w" sizes="100vw" />
           <img src="/assets/review-1536.webp" width="1536" height="1024" loading="lazy" alt="La patiente consulte son téléphone après une visite." />
@@ -468,11 +437,11 @@ export function PatientJourney() {
         <div className="deck-bottom wrap">
           <p>
             <span>LE GAIN POUR VOTRE CLINIQUE</span>Faire vivre votre réputation avec des retours authentiques, sans imposer de note.</p>
-          <span className="deck-number">11 <i>/ 13</i>
+          <span className="deck-number">10 <i>/ 12</i>
           </span>
         </div>
       </SlideFrame>
-      <SlideFrame className="workflow-section" id="workflow" data-deck="12">
+      <SlideFrame className="workflow-section" id="workflow" data-deck="11">
         <div className="wrap">
           <p className="eyebrow">Pourquoi vous ? Parce que toute la suite est pensée.</p>
           <h2>Un parcours.<br />
@@ -529,7 +498,7 @@ export function PatientJourney() {
           <p className="workflow-foot">Parcours cible de l’offre. Les connexions, le calendrier et les automatisations sont à configurer pour chaque clinique ; cette présentation en simule le fonctionnement.</p>
         </div>
       </SlideFrame>
-      <SlideFrame className="deck-slide " id="mesurer" data-deck="13" aria-labelledby="title-mesurer">
+      <SlideFrame className="deck-slide " id="mesurer" data-deck="12" aria-labelledby="title-mesurer">
         <picture className="deck-photo">
           <source srcSet="/assets/dentist-800.webp 800w, /assets/dentist-1536.webp 1536w" sizes="100vw" />
           <img src="/assets/dentist-1536.webp" width="1536" height="1024" loading="lazy" alt="Une dentiste regarde le visiteur dans sa clinique." />
@@ -568,7 +537,7 @@ export function PatientJourney() {
         <div className="deck-bottom wrap">
           <p>
             <span>LE GAIN POUR VOTRE CLINIQUE</span>Évaluer ce que l’acquisition rapporte et identifier l’étape à améliorer.</p>
-          <span className="deck-number">13 <i>/ 13</i>
+          <span className="deck-number">12 <i>/ 12</i>
           </span>
         </div>
       </SlideFrame>

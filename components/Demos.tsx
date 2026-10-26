@@ -26,19 +26,6 @@ export function IntakeQuiz() {
   </>;
 }
 
-export function SmileComparison() {
-  const [split,setSplit]=useState(50);
-  return <>
-    <div className="smile-compare" style={{ '--split': split+'%' } as CSSProperties}>
-      <img src="/assets/smile-final.webp" alt="Sourire illustratif après transformation" />
-      <div className="compare-before"><img src="/assets/smile-before.webp" alt="Sourire illustratif initial" /></div>
-      <span className="compare-line" aria-hidden="true">↔</span><span className="compare-label">Illustration</span>
-    </div>
-    <label className="range-label" htmlFor="smile-range">Comparer les deux illustrations</label>
-    <input id="smile-range" type="range" min="0" max="100" value={split} onChange={event => setSplit(Number(event.target.value))} onInput={event => setSplit(Number(event.currentTarget.value))} />
-  </>;
-}
-
 const hotspots={
   design: ['Le design','Une image immersive et une typographie soignée donnent une première impression cohérente avec une clinique attentive.'],
   message: ['Le message','Le plaisir de sourire, à nouveau. Le titre parle du souhait du patient avant d’expliquer les soins.'],

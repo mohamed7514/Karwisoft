@@ -1,0 +1,58 @@
+/* Six readable descriptions of actual SEO work, with sourced competitor observations. */
+.seo-work-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+.seo-work-pillar { min-width: 0; padding: 22px 24px 10px; border: 1px solid #d2c9b7; border-radius: 8px; background: #faf7ef; scroll-margin-top: calc(var(--site-header-height) + 58px); }
+.seo-work-pillar > header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.seo-work-icon { display: grid; place-items: center; flex: 0 0 35px; width: 35px; height: 35px; background: #e8e9db; border-radius: 6px; color: #65774f; }
+.seo-work-icon > svg { width: 23px; height: 23px; }
+.seo-work-pillar h3 { margin: 0; color: #34462d; font-size: 20px; line-height: 1.3; letter-spacing: -.4px; }
+.seo-work-pillar h3 > span { color: #994529; }
+.seo-work-description { margin: 0; color: #414d39; font-size: 14px; line-height: 1.75; }
+.seo-task-methods { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 30px; }
+.seo-task-methods > div { min-width: 0; border-top: 1px solid #e0d8c9; padding-top: 12px; }
+.seo-task-methods > div:nth-child(-n+2) { border-top: 0; padding-top: 0; }
+.seo-task-methods dt { color: #364c2e; font-size: 14px; font-weight: 650; line-height: 1.6; }
+.seo-task-methods dd { margin: 5px 0 0; color: #626653; font-size: 13px; line-height: 1.75; overflow-wrap: anywhere; }
+.seo-task-methods dd > p { margin: 0; }
+.seo-task-methods dd > p + p { margin-top: 5px; }
+.seo-task-methods dd strong { color: #895033; font-weight: 650; }
+.seo-work-purpose { margin: 12px 0; color: #606b54; font-size: 13px; line-height: 1.7; }
+.seo-work-purpose > strong { color: #364d2e; }
+.seo-work-observation { border-left: 2px solid #aa7851; padding-left: 12px; margin: 14px 0; }
+.seo-work-observation strong { color: #885134; font-weight: 600; }
+.seo-work-observation > p { margin: 0; color: #626653; font-size: 13px; line-height: 1.7; }
+.seo-work-observation a { display: inline-flex; align-items: center; gap: 5px; min-height: 28px; color: #884b2f; font-size: 12px; font-weight: 600; }
+.seo-work-tools { margin: 0 0 6px; color: #767160; font-size: 11px; line-height: 1.7; }
+.seo-work-tools > span { color: #555f49; font-weight: 600; }
+.seo-work-detail { border-top: 1px solid #ddd3c1; margin-top: 12px; }
+.seo-work-detail > summary, .seo-work-demonstration > summary { display: flex; justify-content: space-between; align-items: center; gap: 14px; min-height: 44px; list-style: none; cursor: pointer; color: #4a5d3c; font-size: 12px; font-weight: 600; }
+.seo-work-detail > summary::-webkit-details-marker, .seo-work-demonstration > summary::-webkit-details-marker { display: none; }
+.seo-work-detail > summary > span, .seo-work-demonstration > summary > span { font-size: 20px; font-weight: 400; }
+.seo-work-detail[open] > summary > span, .seo-work-demonstration[open] > summary > span { transform: rotate(45deg); }
+.seo-work-detail > p { margin: 0 0 12px; color: #626653; font-size: 13px; line-height: 1.8; }
+.seo-work-scope { margin: 12px 0 0; max-width: 900px; color: #767365; font-size: 11px; line-height: 1.8; }
+.seo-work-demonstration { margin-top: 20px; border-block: 1px solid #cec6b4; }
+.seo-work-demonstration > summary { min-height: 54px; font-size: 13px; }
+.seo-work-demonstration[open] { padding-bottom: 16px; }
+.seo-work-grid + .seo-learning-bridge { max-width: none; }
+@media (max-width: 959px) {
+  .seo-task-methods { grid-template-columns: minmax(0, 1fr); }
+  .seo-task-methods > div:nth-child(2) { border-top: 1px solid #e0d8c9; padding-top: 12px; }
+}
+@media (max-width: 760px) {
+  .seo-work-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .seo-work-pillar { padding: 17px 17px 8px; }
+  .seo-work-pillar > header { gap: 10px; margin-bottom: 12px; }
+  .seo-work-icon { flex-basis: 30px; width: 30px; height: 30px; }
+  .seo-work-icon > svg { width: 21px; height: 21px; }
+  .seo-work-pillar h3 { font-size: 18px; }
+  .seo-work-description { font-size: 14px; line-height: 1.7; }
+  .seo-task-methods { gap: 12px; }
+  .seo-task-methods > div + div { padding-top: 10px; }
+  .seo-task-methods dt { font-size: 13px; }
+  .seo-task-methods dd { font-size: 13px; line-height: 1.7; }
+  .seo-work-purpose { margin-block: 10px; font-size: 12px; }
+  .seo-work-observation { margin-block: 12px; padding-left: 10px; }
+  .seo-work-observation > p { font-size: 12px; }
+  .seo-work-tools { font-size: 11px; }
+  .seo-work-detail > summary { font-size: 11px; }
+}

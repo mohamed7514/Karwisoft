@@ -9,7 +9,6 @@ export const frames = [
   ['confiance', 'Inspirer confiance'],
   ['orienter', 'Orienter le patient'],
   ['photos', 'Les photos guidées'],
-  ['preview', 'L’aperçu du sourire'],
   ['demande', 'Préparer la demande'],
   ['reception', 'Le relais de la réception'],
   ['rappels', 'Les rappels'],

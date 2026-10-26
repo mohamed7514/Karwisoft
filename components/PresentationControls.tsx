@@ -67,7 +67,7 @@ export function JourneyNavigation() {
   const go=(direction: number) => slides.current[Math.max(0,Math.min(slides.current.length-1,active+direction))]?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches? 'instant':'smooth' });
   return <nav className={'deck-nav'+(visible&&!presenting? ' is-visible':'')} aria-label="Navigation dans la présentation" hidden={presenting} inert={!visible||presenting}>
     <button type="button" id="deck-prev" aria-label="Diapositive précédente" disabled={active===0} onClick={() => go(-1)}>↑</button>
-    <span id="deck-position">{String(active+1).padStart(2,'0')} / 13</span>
+    <span id="deck-position">{String(active+1).padStart(2,'0')} / 12</span>
     <button type="button" id="deck-next" aria-label="Diapositive suivante" disabled={active===12} onClick={() => go(1)}>↓</button><a href="#offre">L’offre ↗</a>
   </nav>;
 }

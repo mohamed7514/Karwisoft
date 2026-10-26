@@ -96,7 +96,7 @@ try {
     assert(await evaluate('!!window.karwisoftPresentation&&document.querySelector("#present-position").textContent==="01 / 19"'),`presentation initializes ${width}`);
     assert(await evaluate('!document.querySelector(".header").getClientRects().length&&document.querySelectorAll("#overview-items button").length===19'),`presentation controls and index ${width}`);
     for(let i=0;i<19;i++){
-      await evaluate(`window.karwisoftPresentation.goTo(${JSON.stringify(['intro-1','intro-2','intro-3','approche','attirer','ressentir','convaincre','confiance','orienter','photos','preview','demande','reception','rappels','avis','workflow','mesurer','offre','suite'][i])})`);
+      await evaluate(`window.karwisoftPresentation.goTo(${JSON.stringify(['intro-1','intro-2','intro-3','approche','attirer','ressentir','convaincre','confiance','orienter','photos','demande','reception','rappels','avis','workflow','mesurer','offre','suite'][i])})`);
       const state=await evaluate('({overflow:document.documentElement.scrollWidth>innerWidth+1,visible:[...document.querySelectorAll("[data-story-scene],#approche,[data-deck],#offre,#suite")].filter(x=>x.getClientRects().length).length,bottom:document.querySelector(".present-controls").getBoundingClientRect().bottom,height:innerHeight})');
       assert(!state.overflow&&state.visible===1&&state.bottom<=state.height,`slide ${i+1} fits and is alone at ${width}`);
     }
@@ -104,8 +104,6 @@ try {
     await click('[data-present-go="6"]');assert(await evaluate('!document.querySelector("#presentation-overview").open&&!document.querySelector("#convaincre").hidden'),'overview jumps to demo');
     await click('[data-hotspot="design"]');assert(await evaluate('document.querySelector("#hotspot-detail").textContent.includes("typographie")'),'hotspot works in presentation');
     if(width===1024||width===768||width===390)await shot('migration-tablet-'+width);
-    await evaluate('window.karwisoftPresentation.goTo("preview");document.querySelector("#smile-range").value="70";document.querySelector("#smile-range").dispatchEvent(new Event("input",{bubbles:true}))');
-    assert(await evaluate('document.querySelector(".smile-compare").style.getPropertyValue("--split")==="70%"'),'comparison remains interactive');
     await evaluate('window.karwisoftPresentation.goTo("demande")');
     for(let j=0;j<4;j++)await click('#quiz-content button');
     assert(await evaluate('document.querySelector("#quiz-content").textContent.includes("préparée")'),'quiz completes in presentation');
@@ -116,10 +114,7 @@ try {
     assert(await evaluate('!document.querySelector("#demande").hidden'),'direct presentation link restores slide');
     await command('Input.dispatchKeyEvent',{type:'keyDown',key:'ArrowRight',code:'ArrowRight'},session);await pause(50);
     assert(await evaluate('!document.querySelector("#reception").hidden'),'keyboard advances');
-    await command('Page.navigate',{url:base+'/?mode=presentation#preview'},session);await pause(300);
-    await evaluate('document.querySelector("#smile-range").focus()');
     await command('Input.dispatchKeyEvent',{type:'keyDown',key:'ArrowRight',code:'ArrowRight'},session);await pause(50);
-    assert(await evaluate('!document.querySelector("#preview").hidden'),'range keyboard does not advance slide');
   }
   await command('Emulation.setDeviceMetricsOverride',{width:1440,height:900,deviceScaleFactor:1,mobile:false},session);
   await command('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'no-preference'}]},session);

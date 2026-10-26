@@ -57,7 +57,7 @@ const pause = ms => new Promise(resolve=>setTimeout(resolve,ms));
 async function click(selector){await evaluate('document.querySelector('+JSON.stringify(selector)+').click()');await pause(80)}
 
 const sizes=[[1920,1080],[1440,900],[1280,720],[1024,600],[1000,768],[834,1112],[768,1024],[600,800],[430,932],[390,844],[375,667],[320,568],[844,390],[667,375],[720,450]];
-const ids=['intro-1','intro-2','intro-3','approche','attirer','ressentir','convaincre','confiance','orienter','photos','preview','demande','reception','rappels','avis','workflow','mesurer','offre','suite'];
+const ids=['intro-1','intro-2','intro-3','approche','attirer','ressentir','convaincre','confiance','orienter','photos','demande','reception','rappels','avis','workflow','mesurer','offre','suite'];
 async function ready(presenting=false) {
   for(let i=0;i<80;i++) {
     if(await evaluate(presenting?'!!window.karwisoftPresentation':'!!document.querySelector(".site-menu-toggle")')) {await pause(100);return;}
