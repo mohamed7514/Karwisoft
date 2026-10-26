@@ -47,14 +47,14 @@ header.header {
 .header .site-navigation .site-menu .site-contact {
   padding: 10px 12px 10px 20px;
   gap: 20px;
-  background: #263b30;
+  background: #c95636;
   color: #fffaf0;
-  border: 1px solid #263b30;
+  border: 1px solid #c95636;
   border-radius: 999px;
   min-height: 46px;
 }
 .header .site-contact > span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #ffffff17; font-size: 17px; }
-.header .site-navigation .site-menu .site-contact:hover { background: #3b5144; }
+.header .site-navigation .site-menu .site-contact:hover { background: #b34e32; border-color: #b34e32; }
 .header .site-menu-toggle { display: none; }
 .header a:focus-visible, .header button:focus-visible { outline: 2px solid #b34e32; outline-offset: 4px; }
 .skip { z-index: 70; }
@@ -107,7 +107,7 @@ html:not(.presenting) :is(#parcours, #approche, #offre, #suite, .service-detail,
 /* Language switcher: FR | EN. Mobile: next to the menu button; desktop: after the navigation. */
 .header .language-switcher { display: inline-flex; align-items: center; border: 1px solid #d5d1c7; border-radius: 999px; overflow: hidden; font-size: 12px; font-weight: 600; letter-spacing: .05em; flex: 0 0 auto; order: 3; }
 .header .language-switcher a { display: grid; place-items: center; min-width: 40px; min-height: 40px; padding: 0 10px; color: #5f5b52; }
-.header .language-switcher a[aria-current=true] { background: #263b30; color: #fffaf0; }
+.header .language-switcher a[aria-current=true] { background: #c95636; color: #fffaf0; }
 .header .language-switcher a:not([aria-current=true]):hover { background: #e8e5dd; }
 .header .site-navigation { order: 2; }
 @media (max-width: 1000px) {
