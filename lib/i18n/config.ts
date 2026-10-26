@@ -7,6 +7,7 @@ const enSlugs: Record<string, string> = {
   '/tarifs/': '/pricing/',
   '/services/site-web/': '/services/website/',
   '/services/seo-ia/': '/services/seo-ai/',
+  '/a-propos/': '/about/',
 };
 const frSlugs = Object.fromEntries(Object.entries(enSlugs).map(([fr, en]) => [en, fr]));
 

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-const TARGETS = '.bd-h,.bd-pill,.bd-lead,.bd-sub,.bd-body,.bd-card,.bd-btn,.bd-link,.bd-offer-box,.bd-faq details,.tf-plan,.tf-row,.tf-note,.sx-row,.sx-step,.bd-footer';
+const TARGETS = '.bd-h,.bd-pill,.bd-lead,.bd-sub,.bd-body,.bd-card,.bd-btn,.bd-link,.bd-offer-box,.bd-faq details,.tf-plan,.tf-row,.tf-note,.sx-row,.sx-step,.cf label,.ab-links li,.ct-map,.bd-footer';
 
 // Adds `.is-in` to each target as it enters the viewport; the CSS does the rest.
 export function BdMotion() {

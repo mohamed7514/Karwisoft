@@ -63,8 +63,8 @@ body:has(.bd){background:#fff}
 @media (scripting:enabled) and (prefers-reduced-motion:no-preference){
  .bd-w>span{transform:translate3d(0,108%,0)}
  .bd-h.is-in .bd-w>span{animation:bd-word 1.05s cubic-bezier(.16,1,.3,1) calc(var(--i) * 55ms) both}
- .bd :is(.bd-pill,.bd-lead,.bd-sub,.bd-body,.bd-card,.bd-btn,.bd-link,.bd-offer-box,.bd-faq details,.tf-plan,.tf-row,.tf-note,.sx-row,.sx-step):not(.is-in),.bd-footer:not(.is-in){opacity:0}
- .bd :is(.bd-pill,.bd-lead,.bd-sub,.bd-body,.bd-card,.bd-btn,.bd-link,.bd-offer-box,.bd-faq details,.tf-plan,.tf-row,.tf-note,.sx-row,.sx-step).is-in,.bd-footer.is-in{animation:bd-rise 1s cubic-bezier(.16,1,.3,1) calc(var(--d,0ms) + 120ms) both}
+ .bd :is(.bd-pill,.bd-lead,.bd-sub,.bd-body,.bd-card,.bd-btn,.bd-link,.bd-offer-box,.bd-faq details,.tf-plan,.tf-row,.tf-note,.sx-row,.sx-step,.cf label,.ab-links li,.ct-map):not(.is-in),.bd-footer:not(.is-in){opacity:0}
+ .bd :is(.bd-pill,.bd-lead,.bd-sub,.bd-body,.bd-card,.bd-btn,.bd-link,.bd-offer-box,.bd-faq details,.tf-plan,.tf-row,.tf-note,.sx-row,.sx-step,.cf label,.ab-links li,.ct-map).is-in,.bd-footer.is-in{animation:bd-rise 1s cubic-bezier(.16,1,.3,1) calc(var(--d,0ms) + 120ms) both}
  .bd-sub.is-in{animation-delay:calc(var(--d,0ms) + 320ms)}
 }
 .bd-faq details::details-content{block-size:0;overflow:clip;transition:block-size .45s cubic-bezier(.16,1,.3,1),content-visibility .45s allow-discrete}
