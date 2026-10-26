@@ -1,0 +1,41 @@
+/* /services/ — builds on home-bolder.css (.bd-*) and tarifs.css (.tf-*). */
+.sx-list{display:grid;gap:8px}
+.sx-row{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:20px 20px 28px;border-radius:14px;background:var(--bd-card);min-height:300px}
+.sx-head{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding-top:36px}
+.sx-head .bd-dot{top:0;left:0}
+.sx-num{position:absolute;top:0;left:22px;font-size:11px;line-height:8px}
+.sx-head h2{margin:0;font-family:var(--display);font-weight:400;font-size:42px;line-height:1.05;letter-spacing:-.03em}
+.sx-body{display:grid;gap:18px;align-content:start;padding-top:2px}
+.sx-body>p{font-size:18px;line-height:1.3;max-width:520px}
+.sx-body ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.sx-body li{position:relative;padding-left:18px;color:var(--bd-muted);font-size:15px;line-height:1.35}
+.sx-body li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--bd-ink)}
+.sx-body .bd-link{justify-self:start;margin-top:4px}
+.sx-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:28px}
+.sx-cols .sx-step{display:grid;gap:10px;align-content:start;padding:20px;border-radius:14px;background:var(--bd-card)}
+.sx-step strong{font-weight:400;font-size:20px;letter-spacing:-.02em}
+.sx-step p{color:var(--bd-muted);font-size:15px;line-height:1.35}
+.sx-steps{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:8px;max-width:640px}
+.sx-steps .sx-step{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:20px;border-radius:14px;background:var(--bd-card)}
+.sx-steps .sx-step>span{font-size:11px;padding-top:5px}
+.sx-steps .sx-step>div{display:grid;gap:8px}
+@media(max-width:1000px){.sx-cols{grid-template-columns:1fr}}
+@media(max-width:760px){.sx-row{grid-template-columns:1fr;gap:22px;min-height:0}.sx-head{padding-top:32px}.sx-head h2{font-size:32px}.sx-head{min-height:90px}}
+
+/* Service detail pages */
+.sx-crumb{margin:0 0 18px;font-size:14px;color:var(--bd-muted)}
+.sx-crumb a{color:inherit;text-decoration:underline;text-underline-offset:4px}
+.sx-highlights{margin-top:0}
+.sx-plan em{font-style:normal;font-size:13px;color:var(--bd-ink);opacity:.7}
+.sx-two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:28px;max-width:720px}
+.sx-two .sx-step{display:grid;gap:14px;align-content:start;padding:20px;border-radius:14px;background:var(--bd-card)}
+.sx-checks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.sx-checks li{position:relative;padding-left:22px;font-size:15px;line-height:1.35}
+.sx-checks li::before{content:"";position:absolute;left:1px;top:.3em;width:10px;height:6px;border-left:2px solid var(--bd-ink);border-bottom:2px solid var(--bd-ink);transform:rotate(-45deg)}
+.sx-no li{color:var(--bd-muted)}
+.sx-no li::before{width:12px;height:0;border-left:0;border-bottom:2px solid var(--bd-muted);transform:none;top:.62em}
+.sx-price{display:grid;gap:8px;margin-top:28px;max-width:640px}
+.sx-price .bd-link{justify-self:start;margin-top:10px}
+.sx-price-row{grid-template-columns:1fr auto}
+.sx-price-row .tf-row-fee b{font-size:28px}
+@media(max-width:760px){.sx-two{grid-template-columns:1fr}}

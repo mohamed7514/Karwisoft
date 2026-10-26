@@ -1,6 +1,6 @@
 ﻿/* Shared, opaque navigation: primary links, presentation utility, contact action. */
 :root { --site-header-height: 80px; }
-.header {
+header.header {
   position: sticky;
   inset: 0 0 auto;
   z-index: 35;
@@ -103,3 +103,15 @@ html:not(.presenting) :is(#parcours, #approche, #offre, #suite, .service-detail,
   .header .site-menu a, .header .site-menu-icon > span { transition: none; }
 }
 @media print { .header { display: none; } }
+
+/* Language switcher: FR | EN. Mobile: next to the menu button; desktop: after the navigation. */
+.header .language-switcher { display: inline-flex; align-items: center; border: 1px solid #d5d1c7; border-radius: 999px; overflow: hidden; font-size: 12px; font-weight: 600; letter-spacing: .05em; flex: 0 0 auto; order: 3; }
+.header .language-switcher a { display: grid; place-items: center; min-width: 40px; min-height: 40px; padding: 0 10px; color: #5f5b52; }
+.header .language-switcher a[aria-current=true] { background: #263b30; color: #fffaf0; }
+.header .language-switcher a:not([aria-current=true]):hover { background: #e8e5dd; }
+.header .site-navigation { order: 2; }
+@media (max-width: 1000px) {
+  .header .language-switcher { order: 1; margin-left: auto; margin-right: 10px; }
+  .header .site-navigation { order: 2; }
+  .header .language-switcher a { min-width: 36px; min-height: 36px; padding: 0 8px; }
+}

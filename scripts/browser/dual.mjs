@@ -55,6 +55,10 @@ async function shot(name, fullPage = false) {
 const base=process.env.KARWISOFT_TEST_URL || 'http://127.0.0.1:3100';
 const pause = ms => new Promise(resolve=>setTimeout(resolve,ms));
 async function click(selector){await evaluate('document.querySelector('+JSON.stringify(selector)+').click()');await pause(80)}
+async function ready(presentation=false){
+  await evaluate('new Promise((resolve,reject)=>{const end=Date.now()+20000;const check=()=>document.readyState==="complete"&&'+(presentation?'!!window.karwisoftPresentation':'!!document.querySelector(".vision-hero")')+'?resolve():Date.now()>end?reject(Error("Page not ready")):setTimeout(check,40);check()})');
+  await evaluate('document.fonts.ready');
+}
 try {
   assert((await fetch(base)).status===200,'page responds');
   const {targetId}=await command('Target.createTarget',{url:'about:blank'});
@@ -63,9 +67,9 @@ try {
   await command('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]},session);
   for(const [width,height] of [[1440,900],[1024,768],[768,1024],[390,844],[320,568]]){
     await command('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:width<760},session);
-    await command('Page.navigate',{url:base},session);await pause(600);
+    await command('Page.navigate',{url:base},session);await ready();await pause(200);
     assert(await evaluate('document.documentElement.scrollWidth<=innerWidth+1'),`online page fits ${width}`);
-    assert(await evaluate('[...document.querySelectorAll("a")].filter(a=>a.hash).every(a=>document.getElementById(a.hash.slice(1)))'),`online anchors resolve ${width}`);
+    assert(await evaluate('[...document.querySelectorAll(\'a[href^="#"]\')].every(a=>document.getElementById(a.hash.slice(1)))'),`online anchors resolve ${width}`);
     if(width<=1000) {
       assert(await evaluate('document.querySelector(".site-menu-toggle").getAttribute("aria-expanded")==="false"&&[...document.querySelectorAll(".site-menu a")].every(a=>!a.getClientRects().length)'),`closed mobile menu hides links ${width}`);
       await click('.site-menu-toggle');
@@ -92,10 +96,10 @@ try {
     await evaluate('document.querySelector(".faq-list details").open=true');
     assert(await evaluate('document.querySelector(".faq-list details").open'),'FAQ opens');
     if(width===1440||width===390){await evaluate('scrollTo({top:0,behavior:"instant"})');await shot('migration-online-'+width)}
-    await command('Page.navigate',{url:base+'/?mode=presentation#accueil'},session);await pause(800);
-    assert(await evaluate('!!window.karwisoftPresentation&&document.querySelector("#present-position").textContent==="01 / 19"'),`presentation initializes ${width}`);
-    assert(await evaluate('!document.querySelector(".header").getClientRects().length&&document.querySelectorAll("#overview-items button").length===19'),`presentation controls and index ${width}`);
-    for(let i=0;i<19;i++){
+    await command('Page.navigate',{url:base+'/?mode=presentation#accueil'},session);await ready(true);await pause(200);
+    assert(await evaluate('!!window.karwisoftPresentation&&document.querySelector("#present-position").textContent==="01 / 18"'),`presentation initializes ${width}`);
+    assert(await evaluate('!document.querySelector(".header").getClientRects().length&&document.querySelectorAll("#overview-items button").length===18'),`presentation controls and index ${width}`);
+    for(let i=0;i<18;i++){
       await evaluate(`window.karwisoftPresentation.goTo(${JSON.stringify(['intro-1','intro-2','intro-3','approche','attirer','ressentir','convaincre','confiance','orienter','photos','demande','reception','rappels','avis','workflow','mesurer','offre','suite'][i])})`);
       const state=await evaluate('({overflow:document.documentElement.scrollWidth>innerWidth+1,visible:[...document.querySelectorAll("[data-story-scene],#approche,[data-deck],#offre,#suite")].filter(x=>x.getClientRects().length).length,bottom:document.querySelector(".present-controls").getBoundingClientRect().bottom,height:innerHeight})');
       assert(!state.overflow&&state.visible===1&&state.bottom<=state.height,`slide ${i+1} fits and is alone at ${width}`);
@@ -119,7 +123,7 @@ try {
   await command('Emulation.setDeviceMetricsOverride',{width:1440,height:900,deviceScaleFactor:1,mobile:false},session);
   await command('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'no-preference'}]},session);
   await command('Page.navigate',{url:base},session);await pause(1800);
-  assert(await evaluate('document.querySelector(".story").classList.contains("story-enhanced")'),'online animation remains enabled');
+  assert(await evaluate('document.querySelector(".vision-hero").dataset.motion==="running"&&getComputedStyle(document.querySelector(".vision-hover")).animationName==="vision-float"'),'online bubble animation remains enabled');
   await evaluate('document.querySelector("#attirer").scrollIntoView({behavior:"instant"})');await pause(1000);
   assert(await evaluate('document.querySelector(".deck-nav").classList.contains("is-visible")'),'online journey navigation works');
   await command('Page.navigate',{url:base+'/?mode=presentation#convaincre'},session);await pause(500);

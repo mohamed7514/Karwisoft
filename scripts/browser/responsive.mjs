@@ -60,7 +60,7 @@ const sizes=[[1920,1080],[1440,900],[1280,720],[1024,600],[1000,768],[834,1112],
 const ids=['intro-1','intro-2','intro-3','approche','attirer','ressentir','convaincre','confiance','orienter','photos','demande','reception','rappels','avis','workflow','mesurer','offre','suite'];
 async function ready(presenting=false) {
   for(let i=0;i<80;i++) {
-    if(await evaluate(presenting?'!!window.karwisoftPresentation':'!!document.querySelector(".site-menu-toggle")')) {await pause(100);return;}
+    if(await evaluate(presenting?'!!window.karwisoftPresentation':'!!document.querySelector(".vision-hero")&&[...document.querySelectorAll(".vision-hero img")].every(i=>i.complete&&i.naturalWidth>0)')) {await pause(100);return;}
     await pause(100);
   }
   throw new Error('Page did not hydrate');
@@ -68,7 +68,7 @@ async function ready(presenting=false) {
 function geometricCheck(id) {
   const frame=document.getElementById(id), failures=[];
   const container=frame.getBoundingClientRect();
-  for(const e of frame.querySelectorAll('h2,.deck-copy>p,.story-caption>p,.deck-panel,.real-site,.deck-bottom,.workflow-grid')) {
+  for(const e of frame.querySelectorAll('h1,h2,.vision-message,.vision-portal,.deck-copy>p,.story-caption>p,.deck-panel,.real-site,.deck-bottom,.workflow-grid')) {
     if(!e.getClientRects().length)continue;
     const r=e.getBoundingClientRect();
     if(r.width&&r.height&&(r.left < -1 || r.right > innerWidth+1 || r.top < container.top-2 || r.bottom > container.bottom+2)) failures.push({element:e.tagName+'.'+e.className,rect:[r.left,r.top,r.right,r.bottom],frame:[container.top,container.bottom]});
@@ -92,15 +92,10 @@ try {
   for(const [width,height] of sizes) {
     await command('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:false},session);
     await command('Page.navigate',{url:base},session);await ready();await pause(350);
-    if(width>=1101&&height>=700)for(let i=0;i<80;i++){if(await evaluate('document.querySelector(".story").classList.contains("story-enhanced")'))break;await pause(100);}
     assert(await evaluate('document.documentElement.scrollWidth<=innerWidth+1'), 'landing width '+width+'x'+height);
-    assert(await evaluate('document.querySelector(".story").classList.contains("story-enhanced")==='+(width>=1101&&height>=700)), 'pinning matches available screen '+width+'x'+height);
-    if(width<1101||height<700) {
-      for(const id of ids.slice(0,3)) {
-        const result=await evaluate('('+geometricCheck.toString()+')('+JSON.stringify(id)+')');
-        assert(result.length===0,'flowing hero '+id+' at '+width+'x'+height+': '+JSON.stringify(result));
-      }
-    }
+    assert(await evaluate('!document.querySelector(".vision-hero").closest(".pin-spacer")&&getComputedStyle(document.querySelector(".vision-past img")).transform==="none"'), 'past remains unpinned and unanimated '+width+'x'+height);
+    const heroGeometry=await evaluate('('+geometricCheck.toString()+')('+JSON.stringify('accueil')+')');
+    assert(heroGeometry.length===0,'hero content contained at '+width+'x'+height+': '+JSON.stringify(heroGeometry));
     if(width===390||width===844||width===1440)await shot('final-landing-'+width+'x'+height);
     await command('Page.navigate',{url:base+'/?mode=presentation#intro-1'},session);await ready(true);
     for(const id of ids) {
@@ -122,8 +117,8 @@ try {
   for(const [width,height] of [[390,844],[834,1112],[844,390],[1440,900]]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:false},session);await pause(700);
     assert(await evaluate('window.responsiveResizeMarker==="same-document"&&document.documentElement.scrollWidth<=innerWidth+1'),'resize keeps document and fits '+width+'x'+height);
-    assert(await evaluate('document.querySelector(".story").classList.contains("story-enhanced")==='+(width>=1101&&height>=700)),'animation resets after live resize '+width+'x'+height);
-    if(width<1101)assert(await evaluate('[...document.querySelectorAll("[data-story-scene]")].every(e=>!e.inert&&e.getAttribute("aria-hidden")!=="true"&&getComputedStyle(e).visibility==="visible")'),'all hero scenes remain accessible after resize');
+    assert(await evaluate('document.querySelector(".vision-hero").dataset.motion==="running"&&getComputedStyle(document.querySelector(".vision-past img")).transform==="none"'),'bubble motion and fixed background survive resize '+width+'x'+height);
+    assert(await evaluate('document.querySelector("#vision-title").getClientRects().length>0&&document.querySelector(".vision-cta").getBoundingClientRect().height>=44'),'hero heading and action remain accessible after resize');
   }
   assert(errors.length===0,'no browser errors: '+errors.join('; '));
   console.log('Responsive geometry, landscape, zoom-equivalent and live resize checks passed.');

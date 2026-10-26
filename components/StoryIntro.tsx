@@ -1,7 +1,10 @@
 import { SlideFrame,ExperienceRegion,StoryControls } from './Experience';
+import { HomeIntro } from './VisionHero';
+import type { Locale } from '../lib/i18n/config';
 
-export function StoryIntro() {
+export function StoryIntro({ locale = 'fr' }: { locale?: Locale }) {
   return <>
+    <HomeIntro locale={locale}>
     <ExperienceRegion className="story" id="accueil" aria-labelledby="hero-title" region="story" as="section">
       <h1 id="hero-title" className="sr-only">Un patient cherche un dentiste. Il compare plusieurs cliniques. Pourquoi choisirait-il la vôtre ?</h1>
       <div className="story-stage">
@@ -120,5 +123,6 @@ export function StoryIntro() {
       <a className="approach-offer" href="#offre">Découvrir les formules ↗</a>
       <span className="demo-note">Présentation interactive · Clinique et patients fictifs · Aucun envoi réel</span>
     </SlideFrame>
+    </HomeIntro>
   </>;
 }
