@@ -6,6 +6,7 @@ import { BdFooter } from '../BdFooter';
 import { Split } from '../Split';
 import { adsPlans, getSitePlans, money } from '../../lib/pricing';
 import { pricingPage } from '../../lib/i18n/dict';
+import { localizeHref } from '../../lib/i18n/config';
 import type { Locale } from '../../lib/i18n/config';
 import '../../app/styles/home-bolder.css';
 import '../../app/styles/tarifs.css';
@@ -45,7 +46,7 @@ export function PricingPage({ locale }: { locale: Locale }) {
                 : <div className="tf-price"><strong>{money(plan.price, locale)}</strong><span>{oneTime(locale)}</span></div>}
               {plan.featured && <Gifts locale={locale} />}
               <ul>{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-              <a className="tf-cta" href={mail(t.mailSite(plan.name))}>{plan.cta}</a>
+              <a className="tf-cta" href={localizeHref(`/commande/?plan=${plan.id}`, locale)}>{plan.cta}</a>
             </article>
           ))}
         </div>
@@ -60,7 +61,7 @@ export function PricingPage({ locale }: { locale: Locale }) {
                 <div key={plan.id} className="tf-row">
                   <div><span>{t.monthlyBudget}</span><strong>{plan.budget[locale]}</strong></div>
                   <div className="tf-row-fee"><b>{money(plan.fee, locale)}</b><span>{t.perMonth}</span></div>
-                  <a className="tf-cta" href={mail(t.mailAds(plan.budget[locale]))}>{t.start}</a>
+                  <a className="tf-cta" href={localizeHref(`/commande/?plan=premium&ads=${plan.id}`, locale)}>{t.start}</a>
                 </div>
               ))}
             </div>

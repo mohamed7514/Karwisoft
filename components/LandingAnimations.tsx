@@ -7,6 +7,8 @@ export function LandingAnimations() {
   const { presenting }=useExperience();
   useEffect(() => {
     if(presenting||new URLSearchParams(location.search).get('mode')==='presentation') return;
+    // The public home no longer renders the legacy story/offer sections these timelines target.
+    if(!document.querySelector('.story, .launch-bonus, .wow-slide')) return;
     let disposed=false;
     let cleanup: (() => void)|undefined;
     void Promise.all([import('gsap'),import('gsap/ScrollTrigger'),import('../lib/landing-animations.mjs')]).then(([{ gsap },{ ScrollTrigger },{ initializeAnimations }]) => {

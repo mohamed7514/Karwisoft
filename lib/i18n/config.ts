@@ -8,6 +8,7 @@ const enSlugs: Record<string, string> = {
   '/services/site-web/': '/services/website/',
   '/services/seo-ia/': '/services/seo-ai/',
   '/a-propos/': '/about/',
+  '/commande/': '/order/',
 };
 const frSlugs = Object.fromEntries(Object.entries(enSlugs).map(([fr, en]) => [en, fr]));
 

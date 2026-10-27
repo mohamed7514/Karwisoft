@@ -1,0 +1,72 @@
+[
+  {
+    "name": "hero-table-panorama",
+    "format": "webp",
+    "width": 2172,
+    "height": 724,
+    "size": 406086,
+    "sourceSize": 2860081,
+    "quality": 85,
+    "nativeResolution": true
+  },
+  {
+    "name": "hero-passe",
+    "format": "webp",
+    "width": 2560,
+    "height": 1440,
+    "channels": 3,
+    "premultiplied": false,
+    "hasAlpha": false,
+    "size": 291556
+  },
+  {
+    "name": "hero-futur",
+    "format": "webp",
+    "width": 1536,
+    "height": 1024,
+    "channels": 3,
+    "premultiplied": false,
+    "hasAlpha": false,
+    "size": 231500
+  },
+  {
+    "name": "hero-vision-ia",
+    "format": "webp",
+    "width": 1536,
+    "height": 1024,
+    "channels": 3,
+    "premultiplied": false,
+    "hasAlpha": false,
+    "size": 174816
+  },
+  {
+    "name": "hero-vision-sourire",
+    "format": "webp",
+    "width": 1536,
+    "height": 1024,
+    "channels": 3,
+    "premultiplied": false,
+    "hasAlpha": false,
+    "size": 240406
+  },
+  {
+    "name": "hero-vision-evolution",
+    "format": "webp",
+    "width": 1672,
+    "height": 941,
+    "channels": 3,
+    "premultiplied": false,
+    "hasAlpha": false,
+    "size": 250934
+  },
+  {
+    "name": "hero-passe-mobile",
+    "format": "webp",
+    "width": 1440,
+    "height": 2560,
+    "channels": 3,
+    "premultiplied": false,
+    "hasAlpha": false,
+    "size": 295932
+  }
+]

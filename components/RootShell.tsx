@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { SiteChat } from './SiteChat';
 import '../app/styles/styles.css';
 import '../app/styles/presentation.css';
 import '../app/styles/journey.css';
@@ -14,5 +15,5 @@ export function RootShell({ lang, children }: { lang: string; children: ReactNod
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;600;650;700&family=Manrope:wght@400;500;600;650;700;750;800&display=swap" rel="stylesheet" />
-  </head><body>{children}</body></html>;
+  </head><body>{children}<SiteChat locale={lang.startsWith('en') ? 'en' : 'fr'} /></body></html>;
 }

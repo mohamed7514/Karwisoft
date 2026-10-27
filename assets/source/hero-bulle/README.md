@@ -1,5 +1,7 @@
 # Hero bulle — Karwisoft
 
+**Version actuelle :** le tableau doré fourni par le client reste fixe. Une seule scène panoramique autour d’une table défile lentement dans la bulle, avec les écrans orientés vers les personnages qui les utilisent. Sources et animation dans [epic/README.md](epic/README.md), prompt final dans [epic/prompt-panorama.md](epic/prompt-panorama.md), dimensions et poids dans [epic/manifest.json](epic/manifest.json). La composition mobile place le portail face aux observateurs de droite, à hauteur de leur regard. Les sections ci-dessous conservent la provenance et la validation des versions précédentes.
+
 Création le 26 octobre 2026 avec l’outil intégré **image_gen**. Aucun script de génération par API et aucune clé API n’ont été utilisés.
 
 L’utilisateur a délégué le choix des variantes et demandé que le passé soit clairement lié au métier de dentiste. La sélection finale associe la **variante passé 3 retravaillée** en consultation dentaire calme et la **variante futur 2**, avec une dentiste en clinique contemporaine et un patient souriant. Le cadrage mobile a été généré puis ajusté séparément pour dégager la zone de la bulle.

@@ -1,0 +1,12 @@
+# Panorama continu — prompt final
+
+27 octobre 2026. Outil intégré image_gen, sans API avec clé. Image fournie comme référence de style uniquement : proposition de panorama rejetée car les écrans étaient tournés à l’opposé des personnages. La nouvelle génération reconstruit le point de vue depuis l’arrière des personnages.
+
+Use case: stylized-concept. Asset: ONE continuous ultra-wide 3:1 panorama painting for a slow camera pan inside a website bubble.
+The attached image is a STYLE reference ONLY, its screen geometry is WRONG. Rebuild the composition with physically correct screen orientation.
+A single long wooden table in one warm Renaissance hall, amber candlelight, burnt sienna and gold, richly painted fictional historical people, arches opening onto a distant futuristic skyline.
+CRITICAL CAMERA: elevated rear three-quarter view from BEHIND the people, looking over their shoulders down toward the tabletop. All six people are seated on the NEAR side of the table, backs and shoulders closest to camera. Screens are on the FAR side of the table facing TOWARD the seated people AND the camera behind them. Keyboards lie between the people and the screens. People look AWAY from camera toward their screens. Nobody is behind a screen or looks at its back. We see backs of hats, hair, shoulders and a few side profiles. Accept obscured faces; realistic physical geometry is more important than displaying faces.
+Left: a woman in cream bonnet and man in black feathered hat viewed from behind study a laptop with a Google-style dental clinic map and listings, hands naturally over keyboard.
+Middle: older grey-haired man and red velvet hat man, viewed from behind, study a laptop with a ChatGPT-style conversation and a dental implant illustration.
+Right: a woman and curly-haired man viewed from behind study a tablet showing two smile photographs and a small dental history illustration on a second screen. Both screens face those people. No floating transparent displays.
+All devices rest naturally on the same uninterrupted table, the painting is one coherent spatial scene without panels or cuts. Perspective consistent across the whole panorama. Keep heads, screen displays, hands and keyboards within the middle 70% of picture height so they remain visible through a circular window while the camera pans. Warm luminous museum quality oil painting, fine details, dramatic but soft candlelight, same art direction as style reference. No outer circle, no frame, no watermark, no gore, no frightening treatment. No real people. No long readable text needed.

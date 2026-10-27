@@ -69,7 +69,7 @@ export function SiteNavigation({ services = false, locale = 'fr' }: { services?:
         <Link href={localizeHref('/contact/', locale)} aria-current={parsePath(pathname).path.startsWith('/contact') ? 'page' : undefined} onClick={close}>{t.contact}</Link>
       </div>
       <div className="site-menu-actions">
-        {locale === 'fr' && <a className="presentation-link" href="/?mode=presentation#intro-1" title={t.presentationTitle} onClick={close}>
+        {locale === 'fr' && <a className="presentation-link" href="/presentation/" title={t.presentationTitle} onClick={close}>
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="13" rx="2" /><path d="m8 21 4-5 4 5M9 8l6 3-6 3V8Z" /></svg>
           <span>{t.presentation}</span>
         </a>}

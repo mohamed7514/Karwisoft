@@ -6,3 +6,8 @@ node_modules/
 out/
 *.tsbuildinfo
 next-env.d.ts
+
+# Secrets: never commit. Real values go in .env.local (dev) and the host env vars (prod).
+.env
+.env.*
+!.env.example
