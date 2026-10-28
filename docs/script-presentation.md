@@ -12,7 +12,7 @@ Le dentiste repart avec **trois questions à se poser lui-même** (une par fuite
 
 Méthode : Challenger « commercial teaching » (accroche, recadrage, nouvelle façon de faire, solution) avec des questions SPIN. Aucune statistique inventée : les chiffres viennent du dentiste.
 
-Présentation : `/presentation/` (← → ou espace, `N` notes, `F` plein écran). Fenêtre de l'orateur : `/presentation/notes/`.
+Présentation : `/presentation/` (← → ou espace, `F` plein écran). Fenêtre de l'orateur : `/presentation/notes/`.
 Contenu : `lib/deck.ts` ; les prix lus à voix haute viennent de `lib/pricing.ts`.
 
 ## Avant le rendez-vous (15 min)

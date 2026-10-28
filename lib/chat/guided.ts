@@ -5,7 +5,7 @@ import type { Locale } from '../i18n/config';
 
 export type Topic = 'pricing' | 'services' | 'seoAi' | 'call' | 'past' | 'present' | 'future'
   | 'greet' | 'thanks' | 'premium' | 'ads' | 'seo' | 'website' | 'guarantee' | 'delay' | 'contact' | 'about' | 'language';
-export type ChatAction = 'book_call' | 'see_pricing' | 'see_services' | 'email_summary';
+export type ChatAction = 'leave_details' | 'reserve_spot' | 'book_call' | 'see_pricing' | 'see_services';
 
 const normalize = (text: string) => text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
@@ -54,31 +54,31 @@ export function guidedReply(topic: Topic | null, locale: Locale): Reply {
   const ads = adsPlans.map(plan => `${money(plan.fee, locale)}${fr ? ' par mois' : '/month'} (${plan.budget[locale]})`).join(fr ? ' ou ' : ' or ');
   const gifts = getGifts(locale).map(gift => `${gift.months} ${gift.name}`).join(' + ');
   switch (topic) {
-    case 'pricing': return { text: copy.pricing(sites, ads), actions: ['see_pricing', 'book_call'] };
+    case 'pricing': return { text: copy.pricing(sites, ads), actions: ['see_pricing', 'leave_details'] };
     case 'services': return { text: copy.services, actions: ['see_services'] };
-    case 'seoAi': return { text: copy.seoAi, actions: ['see_services', 'book_call'] };
+    case 'seoAi': return { text: copy.seoAi, actions: ['see_services', 'leave_details'] };
     case 'past': return { text: copy.past, actions: [] };
     case 'present': return { text: copy.present, actions: ['see_services'] };
-    case 'future': return { text: copy.future, actions: ['see_services', 'book_call'] };
-    case 'call': return { text: copy.call, actions: ['book_call'] };
+    case 'future': return { text: copy.future, actions: ['see_services', 'leave_details'] };
+    case 'call': return { text: copy.call, actions: ['leave_details'] };
     case 'greet': return { text: copy.greet, actions: [] };
-    case 'thanks': return { text: copy.thanks, actions: ['book_call'] };
+    case 'thanks': return { text: copy.thanks, actions: ['leave_details'] };
     case 'premium': return {
       text: promoLive && premium.regularPrice
         ? (fr
           ? `Le site Premium est à ${money(premium.price, locale)} au lieu de ${money(premium.regularPrice, locale)} jusqu’au ${PROMO.label[locale]} (${PROMO.seatsLeft} places restantes). Il inclut les visuels sur mesure, la prise de rendez-vous en ligne, l’assistant IA et ${gifts} offerts.`
           : `The Premium website is ${money(premium.price, locale)} instead of ${money(premium.regularPrice, locale)} until ${PROMO.label[locale]} (${PROMO.seatsLeft} places left). It includes custom visuals, online booking, the AI assistant and ${gifts} free.`)
         : (fr ? `Le site Premium est à ${money(premium.regularPrice ?? premium.price, locale)} et inclut les visuels sur mesure, la prise de rendez-vous en ligne et l’assistant IA.` : `The Premium website is ${money(premium.regularPrice ?? premium.price, locale)} and includes custom visuals, online booking and the AI assistant.`),
-      actions: ['see_pricing', 'book_call'],
+      actions: ['see_pricing', 'leave_details'],
     };
-    case 'ads': return { text: fr ? `Nous gérons vos campagnes Google Ads : ${ads}. Le budget publicitaire est payé directement à Google par la clinique, et vous gardez le contrôle de votre compte.` : `We manage your Google Ads campaigns: ${ads}. The advertising budget is paid directly to Google by the clinic, and you keep control of your account.`, actions: ['see_pricing', 'book_call'] };
-    case 'seo': return { text: fr ? 'Le SEO fait remonter votre clinique dans les résultats naturels de Google pour les soins que vous offrez, sans payer pour chaque clic. Le SEO et le GEO se font sur devis, et les 3 premiers mois sont offerts avec le site Premium.' : 'SEO moves your clinic up Google’s organic results for the treatments you offer, without paying per click. SEO and GEO are by quote, and the first 3 months are free with the Premium website.', actions: ['see_services', 'book_call'] };
-    case 'website': return { text: fr ? `Nous créons des sites rapides, lisibles sur téléphone, bâtis pour que le visiteur prenne rendez-vous. Trois offres à prix fixe : ${sites}.` : `We build fast sites that read well on a phone, designed so visitors book an appointment. Three fixed-price offers: ${sites}.`, actions: ['see_pricing', 'see_services'] };
-    case 'guarantee': return { text: copy.guarantee, actions: ['book_call'] };
-    case 'delay': return { text: copy.delay, actions: ['book_call'] };
-    case 'contact': return { text: copy.contact(EMAIL), actions: ['book_call'] };
-    case 'about': return { text: copy.about, actions: ['see_services', 'book_call'] };
+    case 'ads': return { text: fr ? 'Google Ads place votre clinique en haut de Google quand un patient cherche votre soin dans votre secteur. Vous ne payez que lorsqu’on clique, et vous gardez le contrôle de votre compte. Nous choisissons les bons soins et la bonne zone, puis nous vous expliquons les résultats chaque mois.' : 'Google Ads puts your clinic at the top of Google when a patient searches for your treatment in your area. You only pay when someone clicks, and you keep control of your account. We choose the right treatments and area, then explain the results every month.', actions: ['leave_details', 'see_services'] };
+    case 'seo': return { text: fr ? 'Le SEO fait remonter votre clinique dans les résultats naturels de Google pour les soins que vous offrez, sans payer pour chaque clic. Le SEO et le GEO se font sur devis, et les 3 premiers mois sont offerts avec le site Premium.' : 'SEO moves your clinic up Google’s organic results for the treatments you offer, without paying per click. SEO and GEO are by quote, and the first 3 months are free with the Premium website.', actions: ['see_services', 'leave_details'] };
+    case 'website': return { text: fr ? 'Un patient qui arrive sur votre site doit se sentir accueilli en quelques secondes : c’est ce qui le fait vous choisir plutôt qu’une autre clinique. Nous créons des sites rapides, lisibles sur téléphone, qui répondent à ses questions et lui disent par quoi commencer.' : 'A patient arriving on your website should feel welcome within seconds: that is what makes them choose you over another clinic. We build fast, phone-friendly sites that answer their questions and tell them where to start.', actions: ['leave_details', 'see_services'] };
+    case 'guarantee': return { text: copy.guarantee, actions: ['leave_details'] };
+    case 'delay': return { text: copy.delay, actions: ['leave_details'] };
+    case 'contact': return { text: copy.contact(EMAIL), actions: ['leave_details'] };
+    case 'about': return { text: copy.about, actions: ['see_services', 'leave_details'] };
     case 'language': return { text: copy.language, actions: [] };
-    default: return { text: copy.fallback, actions: ['book_call'] };
+    default: return { text: copy.fallback, actions: ['leave_details'] };
   }
 }

@@ -1,0 +1,1 @@
+export function createContactHandler(options?: { fetcher?: typeof fetch; now?: () => number; timeoutMs?: number }): (request: Request, env?: Record<string, string | undefined>, context?: { clientId?: string; allowedOrigins?: string[] }) => Promise<Response>;

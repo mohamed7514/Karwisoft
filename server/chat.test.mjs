@@ -49,6 +49,21 @@ test('the origin is checked against the Host the browser used, not the URL the s
   assert.equal((await call('site.test', 'http://127.0.0.1:3100')).status, 403);
 });
 
+test('the assistant is told to sell on value and to quote prices only when asked', async () => {
+  let sent;
+  const fetcher = async (_url, init) => { sent = JSON.parse(init.body); return aiReply(good)(); };
+  await ask(valid, { fetcher });
+  assert.match(sent.instructions, /NE PARLE PAS des prix/);
+  assert.match(sent.instructions, /seulement si le visiteur les demande/);
+  assert.match(sent.instructions, /trois endroits/);
+  assert.match(sent.instructions, /tu promets aucun délai|aucun délai de réponse/);
+  assert.match(sent.instructions, /leave_details/);
+  assert.match(sent.instructions, /RAPPEL FINAL : parle de valeur/);
+  assert.match(sent.instructions, /INTERDIT : les mots « rapidement »/);
+  await ask({ ...valid, locale: 'en' }, { fetcher });
+  assert.match(sent.instructions, /DO NOT bring up prices/);
+});
+
 test('a good answer is returned with only the known fields', async () => {
   const response = await ask(valid);
   const data = await response.json();

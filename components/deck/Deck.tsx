@@ -14,7 +14,6 @@ function Words({ text }: { text: string }) {
 
 export function Deck() {
   const [index, setIndex] = useState(0);
-  const [notes, setNotes] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const channel = useRef<BroadcastChannel | null>(null);
   const touch = useRef<number | null>(null);
@@ -60,9 +59,7 @@ export function Deck() {
       else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(event.key)) { event.preventDefault(); step(-1); }
       else if (event.key === 'Home') go(0);
       else if (event.key === 'End') go(last);
-      else if (event.key.toLowerCase() === 'n') setNotes(value => !value);
       else if (event.key.toLowerCase() === 'f') void toggleFullscreen();
-      else if (event.key === 'Escape') setNotes(false);
     };
     window.addEventListener('keydown', onKey);
     const onFs = () => setFullscreen(!!document.fullscreenElement);
@@ -99,17 +96,8 @@ export function Deck() {
     <nav className="dk-controls" aria-label="Navigation de la présentation">
       <button type="button" onClick={() => step(-1)} disabled={index === 0} aria-label="Diapositive précédente">←</button>
       <span>{String(index + 1).padStart(2, '0')} / {slides.length}</span>
-      <button type="button" onClick={() => setNotes(value => !value)} aria-pressed={notes} aria-label="Notes de l’orateur (N)">Notes</button>
       <button type="button" onClick={() => void toggleFullscreen()} aria-pressed={fullscreen} aria-label="Plein écran (F)">⛶</button>
       <button type="button" onClick={() => step(1)} disabled={index === last} aria-label="Diapositive suivante">→</button>
     </nav>
-
-    {notes && <aside className="dk-notes" aria-label="Notes de l’orateur">
-      <button type="button" className="dk-close" onClick={() => setNotes(false)} aria-label="Fermer les notes">×</button>
-      <h2>Tu dis</h2>
-      {slide.notes.say.map(line => <p key={line}>{line}</p>)}
-      {slide.notes.ask && <><h2>Tu demandes</h2>{slide.notes.ask.map(line => <p key={line} className="ask">{line}</p>)}</>}
-      {slide.notes.tip && <p className="tip">{slide.notes.tip}</p>}
-    </aside>}
   </div>;
 }

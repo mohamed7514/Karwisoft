@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { chatText } from '../lib/i18n/dict-chat';
 import { localizeHref, parsePath, type Locale } from '../lib/i18n/config';
 import { EMAIL } from '../lib/i18n/dict-company';
+import { sendLead } from '../lib/send-lead';
 import { guidedReply, languageOf, topicOf, type ChatAction, type Topic } from '../lib/chat/guided';
 import '../app/styles/chat.css';
 
@@ -46,6 +47,8 @@ export function SiteChat({ locale }: { locale: Locale }) {
   const [error, setError] = useState('');
   const [lead, setLead] = useState<Lead | null>(null);
   const [teaser, setTeaser] = useState(false);
+  const [leadOpen, setLeadOpen] = useState(false);
+  const [leadState, setLeadState] = useState<'idle' | 'sending' | 'error'>('idle');
 
   useEffect(() => {
     const abort = new AbortController();
@@ -106,19 +109,23 @@ export function SiteChat({ locale }: { locale: Locale }) {
   // The presentation deck opens the assistant for a live demo.
   useEffect(() => { const open = () => show(); window.addEventListener('kw:open-chat', open); return () => window.removeEventListener('kw:open-chat', open); }); // eslint-disable-line react-hooks/exhaustive-deps
   function close() { dialog.current?.close(); setOpen(false); launcher.current?.focus({ preventScroll: true }); }
-  function reset() { serial.current++; controller.current?.abort(); setBusy(false); setLead(null); setMessages([welcome()]); setQuestion(''); setPending(''); setError(''); }
+  function reset() { setLeadOpen(false); setLeadState('idle'); serial.current++; controller.current?.abort(); setBusy(false); setLead(null); setMessages([welcome()]); setQuestion(''); setPending(''); setError(''); }
 
-  function mailto() {
-    const body = [
-      t.mailIntro, '',
-      lead?.clinic ? `${t.mailClinic}: ${lead.clinic}` : '',
-      lead ? `${t.mailNeed}: ${t.needs[lead.need]}` : '',
-      lead?.summary ?? '', '',
-      ...messages.filter(m => m.id !== 0).slice(-8).map(m => `${m.role === 'user' ? t.mailYou : t.mailBot}: ${m.text}`),
-    ].filter((line, index, all) => line !== '' || all[index - 1] !== '').join('\n').slice(0, 1600);
-    return `mailto:${EMAIL}?subject=${encodeURIComponent(t.mailSubject)}&body=${encodeURIComponent(body)}`;
+  const hrefFor = (action: ChatAction) => action === 'reserve_spot' ? localizeHref('/commande/?plan=premium', locale) : action === 'see_pricing' ? localizeHref('/tarifs/', locale) : action === 'see_services' ? localizeHref('/services/', locale) : localizeHref('/contact/', locale);
+  const transcript = () => messages.filter(m => m.id !== 0).slice(-10).map(m => `${m.role === 'user' ? t.mailYou : t.mailBot}: ${m.text}`).join('\n');
+
+  // Sends the lead and the conversation to the team by email (server-side), then confirms in the chat.
+  async function submitLead(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const get = (key: string) => String(data.get(key) ?? '').trim();
+    setLeadState('sending');
+    const message = [get('message'), '', lead?.summary ? `${t.mailNeed}: ${t.needs[lead.need]} — ${lead.summary}` : '', '', '--- Conversation ---', transcript()].join('\n');
+    const ok = await sendLead({ kind: 'chat', name: get('name'), clinic: get('clinic') || lead?.clinic || '', email: get('email'), phone: get('phone'), message, locale, website: get('website') });
+    if (!ok) { setLeadState('error'); return; }
+    setLeadOpen(false); setLeadState('idle');
+    setMessages(current => [...current.map(m => ({ ...m, chips: false })), { id: ++serial.current * 2, role: 'assistant', text: t.lead.sent }]);
   }
-  const hrefFor = (action: ChatAction) => action === 'book_call' ? localizeHref('/contact/', locale) : action === 'see_pricing' ? localizeHref('/tarifs/', locale) : action === 'see_services' ? localizeHref('/services/', locale) : mailto();
 
   function addGuided(text: string, topic: Topic | null) {
     const reply = guidedReply(topic, topic && topic !== null && text === text.trim() && isChipQuestion(text) ? locale : languageOf(text, locale));
@@ -186,8 +193,23 @@ export function SiteChat({ locale }: { locale: Locale }) {
       <div ref={list} className="kw-messages" role="log" aria-label={t.conversation} aria-live="polite" aria-busy={busy}>
         {messages.map(message => <div key={message.id} className={`kw-row ${message.role}`}>
           <div className={`kw-bubble${message.role === 'assistant' && message.id !== 0 ? ' kw-arrive' : ''}`}>{message.text}</div>
-          {message.actions && message.actions.length > 0 && <div className="kw-actions">{message.actions.map((action, i) => <a key={action} href={hrefFor(action)} className={i === 0 ? 'kw-btn primary' : 'kw-btn'}>{t.actions[action]}</a>)}</div>}
+          {message.actions && message.actions.length > 0 && <div className="kw-actions">{message.actions.map((action, i) => action === 'leave_details'
+            ? <button key={action} type="button" className={i === 0 ? 'kw-btn primary' : 'kw-btn'} onClick={() => setLeadOpen(true)}>{t.actions[action]}</button>
+            : <a key={action} href={hrefFor(action)} className={i === 0 ? 'kw-btn primary' : 'kw-btn'}>{t.actions[action]}</a>)}</div>}
         </div>)}
+        {leadOpen && <form className="kw-lead" onSubmit={submitLead}>
+          <strong>{t.lead.title}</strong>
+          <p>{t.lead.intro}</p>
+          <input name="name" placeholder={t.lead.name} required autoComplete="name" maxLength={120} />
+          <input name="clinic" placeholder={t.lead.clinic} defaultValue={lead?.clinic ?? ''} autoComplete="organization" maxLength={160} />
+          <input name="email" type="email" placeholder={t.lead.email} required autoComplete="email" maxLength={200} />
+          <input name="phone" type="tel" placeholder={t.lead.phone} autoComplete="tel" maxLength={60} />
+          <textarea name="message" rows={3} placeholder={t.lead.message} defaultValue={t.lead.defaultMessage} required maxLength={1500} />
+          <input className="kw-hp" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+          <small>{t.lead.consent}</small>
+          {leadState === 'error' && <small className="kw-lead-error" role="alert">{t.lead.error} <a href={`mailto:${EMAIL}?subject=${encodeURIComponent(t.mailSubject)}&body=${encodeURIComponent(transcript())}`}>{t.lead.errorMail}</a></small>}
+          <div className="kw-actions"><button type="submit" className="kw-btn primary" disabled={leadState === 'sending'}>{leadState === 'sending' ? t.lead.sending : t.lead.send}</button><button type="button" className="kw-btn" onClick={() => setLeadOpen(false)}>{t.lead.cancel}</button></div>
+        </form>}
         {busy && <div className="kw-row assistant" role="status" aria-label={t.typing}><div className="kw-bubble kw-typing"><i /><i /><i /></div></div>}
         {pending && <div className="kw-row assistant"><div className="kw-bubble">{t.consent}<div className="kw-actions"><button type="button" className="kw-btn primary" onClick={() => { setConsent(true); const text = pending; setPending(''); void send(text, null, true); }}>{t.consentOk}</button><button type="button" className="kw-btn" onClick={() => setPending('')}>{t.cancel}</button></div></div></div>}
         {showChips && <div className="kw-chips">
@@ -198,7 +220,7 @@ export function SiteChat({ locale }: { locale: Locale }) {
             {context && <button type="button" disabled={checking || busy} onClick={() => void send(t.questionsContext[context], context === 'compare' ? 'pricing' : 'services')}>{t.contextual[context]}</button>}
             <button type="button" disabled={checking || busy} onClick={() => void send(t.questions.pricing, 'pricing')}>{t.chips.pricing}</button>
             <button type="button" disabled={checking || busy} onClick={() => void send(t.questions.services, 'services')}>{t.chips.services}</button>
-            <a className="kw-chip-link" href={localizeHref('/contact/', locale)}>{t.chips.call}</a>
+            <button type="button" className="kw-chip-link" onClick={() => setLeadOpen(true)}>{t.chips.call}</button>
           </div>
         </div>}
       </div>

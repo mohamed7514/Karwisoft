@@ -29,3 +29,4 @@
 .od-summary .bd-btn{justify-content:center;margin-top:6px;border:0;background:#c95636;font-family:inherit;cursor:pointer}
 .od-summary small{color:#a9a9a4;font-size:12.5px;line-height:1.4}
 @media(max-width:760px){.od-fields{grid-template-columns:1fr}.od-opt{grid-template-columns:auto 1fr}.od-opt em{grid-column:2;text-align:left}}
+.od-summary .od-error{color:#ffb4a0}.od-summary .od-error a{color:#fff;text-decoration:underline}.od-summary .bd-btn:disabled{opacity:.6;cursor:default}

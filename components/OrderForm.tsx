@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, type FormEvent } from 'react';
+import { sendLead } from '../lib/send-lead';
 import { adsPlans, getSitePlans, money, PROMO } from '../lib/pricing';
 import { orderPage } from '../lib/i18n/dict-order';
 import { EMAIL } from '../lib/i18n/dict-company';
@@ -19,6 +20,8 @@ export function OrderForm({ locale }: { locale: Locale }) {
   const [planId, setPlanId] = useState('premium');
   const [adsId, setAdsId] = useState('none');
   const [live, setLive] = useState(true);
+  const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [draft, setDraft] = useState('');
 
   useEffect(() => {
     setLive(Date.now() <= new Date(PROMO.deadline).getTime());
@@ -34,7 +37,7 @@ export function OrderForm({ locale }: { locale: Locale }) {
   const ads = adsPlans.find(item => item.id === adsId);
   const link = PAY[plan.id];
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const get = (key: string) => String(data.get(key) ?? '').trim();
@@ -55,8 +58,17 @@ export function OrderForm({ locale }: { locale: Locale }) {
       ...(get('phone') ? [`${t.lines.phone}: ${get('phone')}`] : []),
       ...(get('message') ? ['', `${t.lines.message}: ${get('message')}`] : []),
     ];
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(t.subject(plan.name))}&body=${encodeURIComponent(lines.join('\n'))}`;
+    const message = lines.join('\n');
+    setDraft(message);
+    setState('sending');
+    const ok = await sendLead({ kind: 'order', name: get('name'), clinic: get('clinic'), email: get('email'), phone: get('phone'), message, subject: t.subject(plan.name) + ' — ' + get('clinic'), locale, website: get('website') });
+    setState(ok ? 'sent' : 'error');
   }
+
+  if (state === 'sent') return <div className="cf-done" role="status">
+    <h3>{t.sentTitle}</h3>
+    <p>{t.sentText}</p>
+  </div>;
 
   return <form className="od" onSubmit={submit}>
     <fieldset>
@@ -91,14 +103,16 @@ export function OrderForm({ locale }: { locale: Locale }) {
       <label><span>{t.email}</span><input name="email" type="email" required autoComplete="email" /></label>
       <label><span>{t.phone}</span><input name="phone" type="tel" autoComplete="tel" /></label>
       <label className="od-wide"><span>{t.message}</span><textarea name="message" rows={3} /></label>
+      <input className="cf-hp" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
     </div>
 
     <div className="od-summary">
       <p>{t.summary}</p>
       <div><span>{t.today}</span><b>{money(price, locale)}</b></div>
       <div><span>{t.monthly}</span><b>{ads ? money(ads.fee, locale) : t.none}</b></div>
-      <button type="submit" className="bd-btn">{link ? t.pay(money(price, locale)) : t.send}</button>
+      <button type="submit" className="bd-btn" disabled={state === 'sending'}>{state === 'sending' ? t.sending : link ? t.pay(money(price, locale)) : t.send}</button>
       <small>{link ? t.notePay : t.noteSend}</small>
+      {state === 'error' && <small className="od-error" role="alert">{t.error} <a href={`mailto:${EMAIL}?subject=${encodeURIComponent(t.subject(plan.name))}&body=${encodeURIComponent(draft)}`}>{t.errorMail}</a></small>}
     </div>
   </form>;
 }

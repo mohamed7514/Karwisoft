@@ -21,7 +21,7 @@ export function chatFacts(locale: Locale, at = Date.now()): string {
     for (const plan of adsPlans) lines.push(`- Google Ads management: ${money(plan.fee, locale)} per month for an advertising budget of ${plan.budget[locale]}. Above $9,000 per month: by quote.`);
     lines.push('- The advertising budget is paid directly to Google by the clinic; Karwisoft’s management fee is separate. The website price does not include Google Ads management.');
     lines.push('- SEO and GEO: by quote, tailored to the clinic’s market. No ranking, patient count or result is guaranteed.');
-    lines.push(`- Getting started: a 30-minute call with no commitment, then a clear quote, then the work with a monthly report. Contact: the Contact page of the site or ${EMAIL}.`);
+    lines.push(`- Getting started: the visitor leaves their details (the chat has a form that sends their request to the team) or orders the Premium website on the order page; for SEO, GEO and larger needs the team sends a clear quote. A monthly report explains the work. Contact: the Contact page of the site or ${EMAIL}. No response time is promised.`);
     lines.push('- Not known (say so and suggest a call): delivery time, number of clients, past results, contract length, specific integrations, a clinic’s exact price beyond the listed ones.');
   } else {
     lines.push('- Karwisoft Marketing travaille uniquement pour des cliniques dentaires. Services : site web, gestion Google Ads, SEO, SEO + IA (GEO : être cité par les assistants IA).');
@@ -34,7 +34,7 @@ export function chatFacts(locale: Locale, at = Date.now()): string {
     for (const plan of adsPlans) lines.push(`- Gestion Google Ads : ${money(plan.fee, locale)} par mois pour un budget publicitaire de ${plan.budget[locale]}. Au-delà de 9 000 $ par mois : sur devis.`);
     lines.push('- Le budget publicitaire est payé directement à Google par la clinique ; les frais de gestion Karwisoft sont distincts. Le prix du site n’inclut pas la gestion Google Ads.');
     lines.push('- SEO et GEO : sur devis, selon le marché de la clinique. Aucun classement, nombre de patients ni résultat n’est garanti.');
-    lines.push(`- Pour commencer : un appel de 30 minutes sans engagement, puis un devis clair, puis le travail avec un rapport mensuel. Contact : la page Contact du site ou ${EMAIL}.`);
+    lines.push(`- Pour commencer : le visiteur laisse ses coordonnées (le chat a un formulaire qui transmet sa demande à l’équipe) ou commande le site Premium sur la page de commande ; pour le SEO, le GEO et les besoins plus larges, l’équipe envoie un devis clair. Un rapport mensuel explique le travail. Contact : la page Contact du site ou ${EMAIL}. Aucun délai de réponse n’est promis.`);
     lines.push('- Inconnu (le dire et proposer un appel) : délai de livraison, nombre de clients, résultats passés, durée de contrat, intégrations précises, prix exact au-delà de ceux listés.');
   }
   return lines.join('\n');

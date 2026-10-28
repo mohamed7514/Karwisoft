@@ -106,3 +106,16 @@ html.presenting .kw-launcher,html.presenting .kw-chat,html.presenting .kw-teaser
 .kw-badge{position:absolute;top:-2px;right:-2px;z-index:2;display:grid;place-items:center;min-width:22px;height:22px;border-radius:50%;background:#e2683f;color:#fff;font:700 12px/1 var(--font,sans-serif);box-shadow:0 0 0 3px #140b06,0 0 14px #e2683f;animation:kw-badge 1.6s ease-in-out infinite}
 @keyframes kw-badge{50%{transform:scale(1.18)}}
 @media(prefers-reduced-motion:reduce){.kw-badge{animation:none}}
+
+/* Leave-your-details form inside the conversation */
+.kw-lead{display:grid;gap:8px;padding:14px;border:1px solid #f2cf9444;border-radius:16px;background:#fff1d510}
+.kw-lead strong{font:500 16px var(--display,sans-serif);color:#fff5e4}
+.kw-lead p{margin:0;color:#b79a73;font-size:13px;line-height:1.35}
+.kw-lead input:not(.kw-hp),.kw-lead textarea{width:100%;border:1px solid #f2cf9444;border-radius:12px;background:#0a05028c;padding:10px 12px;font:inherit;font-size:16px;color:#fff5e4;outline:0;resize:vertical}
+.kw-lead input:focus,.kw-lead textarea:focus{border-color:var(--kw-gold)}
+.kw-lead small{color:#8a6d49;font-size:12px;line-height:1.35}
+.kw-lead .kw-lead-error{color:#ffb4a0}
+.kw-lead .kw-lead-error a{color:#fff;text-decoration:underline}
+.kw-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.kw-btn:disabled{opacity:.6;cursor:default}
+button.kw-chip-link{font:inherit;font-size:14px}
