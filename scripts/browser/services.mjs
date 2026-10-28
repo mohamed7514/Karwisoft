@@ -76,7 +76,7 @@ try {
     await evaluate('document.querySelector("#sites-web").scrollIntoView({behavior:"instant"})');await pause(400);
     assert(await evaluate('document.querySelector(".preview-image img").naturalWidth>0'),'web design image loads');
     if(width===1440||width===390)await shot('services-web-'+width);
-    assert(await evaluate('[...document.querySelectorAll("a[href^=mailto]")].every(a=>a.href.includes("Contact@Karwisoft.com"))'),'contact destination is correct');
+    assert(await evaluate('[...document.querySelectorAll("a[href^=mailto]")].every(a=>a.href.includes("Support@karwisoft.com"))'),'contact destination is correct');
     if(width===1440)await shot('services-full',true);
     await command('Page.navigate',{url:base},session);await pause(1000);
     assert(await evaluate('document.documentElement.scrollWidth<=innerWidth+1'),`landing navigation fits ${width}`);

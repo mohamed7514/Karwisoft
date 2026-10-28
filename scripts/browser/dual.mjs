@@ -90,7 +90,7 @@ try {
       assert(await evaluate('!document.querySelector(".site-menu-toggle").getClientRects().length&&document.querySelectorAll(".site-menu a").length===5&&[...document.querySelectorAll(".site-menu a")].every(a=>a.getClientRects().length)'),`desktop navigation keeps all five links visible ${width}`);
     }
     await click('.model-button[data-model="essentielle"]');
-    assert(await evaluate('document.querySelector("#contact-link").href.includes("mailto:Contact@Karwisoft.com")&&decodeURIComponent(document.querySelector("#contact-link").href).includes("Essentielle")'),'contact includes Essentielle formula');
+    assert(await evaluate('document.querySelector("#contact-link").href.includes("mailto:Support@karwisoft.com")&&decodeURIComponent(document.querySelector("#contact-link").href).includes("Essentielle")'),'contact includes Essentielle formula');
     await click('.model-button[data-model="avancee"]');
     assert(await evaluate('decodeURIComponent(document.querySelector("#contact-link").href).includes("Avancée")&&document.querySelectorAll(".offer-card.selected").length===1'),'Avancée replaces Essentielle');
     await evaluate('document.querySelector(".faq-list details").open=true');

@@ -26,7 +26,7 @@ L’explication principale des piliers utilise `SeoPillarsWork` et `lib/seo-pill
 - L’accueil et les services partagent une barre crème opaque, visible au défilement : Services, Le parcours, L’offre, un accès secondaire au mode présentation et le bouton « Parlons de votre projet ». Le menu se replie à 1000 pixels et conserve tous ces accès.
 - Sur petit écran, les sections empilent leurs colonnes, les textes restent lisibles et les diapositives longues peuvent défiler verticalement.
 
-Le bouton final ouvre le logiciel de courriel vers **Contact@Karwisoft.com**. Le choix de formule actualise le résumé et l’objet du courriel. Aucun formulaire n’est envoyé par le site et aucun service de messagerie n’est connecté. La FAQ précise les modèles, le budget publicitaire et le relais de la réception. Aucun prix, témoignage ou résultat chiffré n’est inventé.
+Le bouton final ouvre le logiciel de courriel vers **Support@karwisoft.com**. Le choix de formule actualise le résumé et l’objet du courriel. Aucun formulaire n’est envoyé par le site et aucun service de messagerie n’est connecté. La FAQ précise les modèles, le budget publicitaire et le relais de la réception. Aucun prix, témoignage ou résultat chiffré n’est inventé.
 
 ## Fichiers
 

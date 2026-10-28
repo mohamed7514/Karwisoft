@@ -68,7 +68,7 @@ export function ServicesPage({ locale }: { locale: Locale }) {
           <div>
             <h2 id="sx-contact" className="bd-h"><Split text={t.contactTitle} /></h2>
             <div className="bd-actions">
-              <a className="bd-btn" href={`mailto:Contact@Karwisoft.com?subject=${encodeURIComponent(t.mailSubject)}`}>{t.contactBtn}</a>
+              <a className="bd-btn" href={`mailto:Support@karwisoft.com?subject=${encodeURIComponent(t.mailSubject)}`}>{t.contactBtn}</a>
               <a className="bd-link" href={link('/tarifs/')}>{t.seePricing}</a>
             </div>
           </div>

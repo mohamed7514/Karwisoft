@@ -11,7 +11,7 @@ import '../app/styles/tarifs.css';
 import '../app/styles/services-bolder.css';
 
 const Pill = ({ children }: { children: string }) => <p className="bd-pill"><i aria-hidden="true" />{children}</p>;
-const mail = (subject: string) => `mailto:Contact@Karwisoft.com?subject=${encodeURIComponent(subject)}`;
+const mail = (subject: string) => `mailto:Support@karwisoft.com?subject=${encodeURIComponent(subject)}`;
 
 function Pricing({ kind, locale }: { kind: ServicePage['pricing']; locale: Locale }) {
   const t = detail[locale];

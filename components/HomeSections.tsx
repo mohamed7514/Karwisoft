@@ -71,7 +71,7 @@ function HomeSections({ locale }: { locale: Locale }) {
       <p className="bd-pill"><i aria-hidden="true" />{t.contactPill}</p>
       <div>
         <h2 id="bd-contact-title" className="bd-h"><Split text={t.contactTitle} /></h2>
-        <a className="bd-btn" href={`mailto:Contact@Karwisoft.com?subject=${encodeURIComponent(t.mailSubject)}`}>{t.contactBtn}</a>
+        <a className="bd-btn" href={`mailto:Support@karwisoft.com?subject=${encodeURIComponent(t.mailSubject)}`}>{t.contactBtn}</a>
       </div>
     </section>
   </div>;

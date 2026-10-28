@@ -42,7 +42,7 @@ export function Closing() {
           <SelectedModel />
           <p className="micro">Votre clinique, vos soins, votre zone. Et un message qui parle à vos patients.</p>
           <ContactLink />
-          <a className="contact-email" href="mailto:Contact@Karwisoft.com">Contact@Karwisoft.com</a>
+          <a className="contact-email" href="mailto:Support@karwisoft.com">Support@karwisoft.com</a>
           <p className="contact-note">Écrivez-nous le nom de votre clinique, votre ville et les soins que vous souhaitez développer.</p>
         </div>
       </div>

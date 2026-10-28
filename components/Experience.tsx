@@ -136,5 +136,5 @@ export function SelectedModel() {
 export function ContactLink() {
   const { model }=useExperience();
   const subject=model? 'Projet clinique — Google Ads — formule '+modelLabels[model]:'Parlons de ma clinique';
-  return <a className="button dark" id="contact-link" href={'mailto:Contact@Karwisoft.com?subject='+encodeURIComponent(subject)}>Parlons de votre clinique <span aria-hidden="true">↗</span></a>;
+  return <a className="button dark" id="contact-link" href={'mailto:Support@karwisoft.com?subject='+encodeURIComponent(subject)}>Parlons de votre clinique <span aria-hidden="true">↗</span></a>;
 }

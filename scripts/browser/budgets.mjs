@@ -72,7 +72,7 @@ try {
         if(presentation)await evaluate('window.karwisoftPresentation.goTo("offre")');
         await evaluate(`document.querySelectorAll('.model-button')[${i}].click()`);await pause(50);
         assert(await evaluate(`document.querySelectorAll('.offer-card.selected').length===1&&document.querySelectorAll('.model-button')[${i}].getAttribute('aria-pressed')==='true'&&document.querySelector('#selected-model').textContent.includes(${JSON.stringify(label)})`),`${label} replaces prior selection`);
-        assert(await evaluate(`decodeURIComponent(document.querySelector('#contact-link').href).includes(${JSON.stringify('Google Ads — formule '+label)})&&document.querySelector('#contact-link').href.startsWith('mailto:Contact@Karwisoft.com')`),`${label} contact subject is correct`);
+        assert(await evaluate(`decodeURIComponent(document.querySelector('#contact-link').href).includes(${JSON.stringify('Google Ads — formule '+label)})&&document.querySelector('#contact-link').href.startsWith('mailto:Support@karwisoft.com')`),`${label} contact subject is correct`);
         if(presentation)assert(await evaluate('!document.querySelector("#suite").hidden'),'selection advances presentation to contact');
       }
       if(presentation){

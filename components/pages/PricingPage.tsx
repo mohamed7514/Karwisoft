@@ -11,7 +11,7 @@ import type { Locale } from '../../lib/i18n/config';
 import '../../app/styles/home-bolder.css';
 import '../../app/styles/tarifs.css';
 
-const mail = (subject: string) => `mailto:Contact@Karwisoft.com?subject=${encodeURIComponent(subject)}`;
+const mail = (subject: string) => `mailto:Support@karwisoft.com?subject=${encodeURIComponent(subject)}`;
 const Pill = ({ children }: { children: string }) => <p className="bd-pill"><i aria-hidden="true" />{children}</p>;
 
 export function PricingPage({ locale }: { locale: Locale }) {

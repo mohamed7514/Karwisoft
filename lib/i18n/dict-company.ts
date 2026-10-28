@@ -6,7 +6,7 @@ export const MAP = {
   lng: -75.7280263,
   link: 'https://www.google.com/maps/place/Karwisoft+AI/@45.4096895,-75.7306012,17z/data=!3m1!4b1!4m6!3m5!1s0x4cce053706cf55c1:0x8ec4003ef19b68c!8m2!3d45.4096858!4d-75.7280263!16s%2Fg%2F11vkhd2glm',
 };
-export const EMAIL = 'Contact@Karwisoft.com';
+export const EMAIL = 'Support@karwisoft.com';
 
 export const aboutPage = define(
   {

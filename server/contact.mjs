@@ -35,7 +35,7 @@ export function buildEmail(input, env) {
   const subject = oneLine(input.subject || `[Karwisoft] ${label} — ${input.clinic || input.name}`).slice(0, MAX.subject);
   return {
     from: env.CONTACT_FROM || 'Karwisoft <onboarding@resend.dev>',
-    to: (env.CONTACT_TO || 'Contact@Karwisoft.com').split(',').map(item => item.trim()).filter(Boolean),
+    to: (env.CONTACT_TO || 'Support@karwisoft.com').split(',').map(item => item.trim()).filter(Boolean),
     reply_to: input.email,
     subject,
     text: lines.join('\n'),
